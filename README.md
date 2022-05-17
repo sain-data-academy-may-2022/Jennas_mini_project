@@ -1,4 +1,4 @@
-# jennas_mini_project
+# Jennas_mini_project
 
 ## J's Costalot
 
