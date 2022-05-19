@@ -1,6 +1,6 @@
 # Jennas_mini_project
 
-## Costalot!!!
+## Costa'lot!!!
 
 ## App Manifesto
 

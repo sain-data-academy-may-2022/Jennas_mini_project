@@ -1,3 +1,6 @@
+from operator import add
+
+
 product = {
     '0' : '0. Imma head out ',
     '1' : '1. See the menu!!!!',
@@ -7,12 +10,20 @@ product = {
     '5' : '5. Access the order system, only if you have placed one though!'
 }
 
-food_order = {
-   "1" : "Chocolate McChocolate Cake: Cake that is chocolate, what more do you need to know",
-   "2" : "Salad: A boring choice for a boring person",
-   "3" : "Hot Chocolate: With Coconut milk to bring that warm chocolately cozyness",
-   "4" : "Costa'lot Special: Basically just two slices of toast with jam and no butter, but we've called it special so will charge the cost of a whole loaf"
+# food_order = {
+#    "Chocolate McChocolate Cake" : "Cake that is chocolate, what more do you need to know",
+#    "Salad:" : "A boring choice for a boring person",
+#    "Hot Chocolate" : "With Coconut milk to bring that warm chocolately cozyness",
+#    "Costa'lot Special" : "Basically just two slices of toast with jam and no butter, but we've called it special so will charge the cost of a whole loaf"
+
+food_order ={
+   "0" : "Chocolate McChocolate Cake: Cake that is chocolate, what more do you need to know",
+   "1" : "Salad: A boring choice for a boring person",
+   "2" : "Hot Chocolate: With Coconut milk to bring that warm chocolately cozyness",
+   "3" : "Costa'lot Special: Basically just two slices of toast with jam and no butter, but we've called it special so will charge the cost of a whole loaf"
 }
+
+food_list = ['Chocolate McChocolate Cake','Salad','Hot Chocolate', "Costa'lot Special"]
 
 order1 = {
     "customer_name" : "Jenna",
@@ -30,20 +41,23 @@ order2 = {
 
 orders = [order1,order2]
 
+def show_food_options():
+    for key, value in food_order.items():
+        print(key,value)
 
-def show_food_options(): 
-       for key, value in food_order.items():
-                print(key, value)
+def show_food_option_nums(): 
+      for index,name, in enumerate(food_list):
+          print(index,name,)
 
 def show_order_list():
       for index,order in enumerate(orders):
           print(index,order)
-      
 
 
 def add_order_george():
-    my_order = (input('I wanna a order a?'))
-    print(f"Thank you for placing your order for a {food_order [my_order]}, we now need some details from you?")
+    show_food_options
+    my_order = int(input('I wanna a order a?'))
+    print(f"Thank you for placing your order for a {food_list[my_order]}, we now need some details from you?")
     order_name = input("what's your name mate?")
     order_address = input("where do you live then?")
     order_number = input("Digits?")
@@ -51,9 +65,9 @@ def add_order_george():
     orders_george["customer_name"] = (order_name)
     orders_george["customer_address"] =(order_address)
     orders_george["customer_phone"] = (order_number)
+    orders_george["Status"] = ('PREPARING')
     print(orders_george)  
     orders.append(orders_george)
-
 
 
 def order_finished():
@@ -129,8 +143,9 @@ while(True):
     elif (choice == '2'):
         custom = input('Alright princess, What special dish can your slave make for you?')
         describe = input ('Any particular type your highness?')
+        food_list.append(custom)
         custom_1 = (f"{custom}: {describe}")
-        food_order [5] =  (custom_1)
+        food_order[4] = custom_1 
         show_food_options()
         add_order_george()
         order_finished()
@@ -163,22 +178,4 @@ while(True):
     elif (choice == '5'): 
         order_system_fun()
         break
-        
-
-
-
-            
-            
-
-
-      
-
-
-
-
-    
-
-    
-
-
     
