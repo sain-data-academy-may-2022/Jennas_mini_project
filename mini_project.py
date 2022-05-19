@@ -8,7 +8,7 @@ product = {
 }
 
 food_order = {
-   "1" : "Chocolate McChocolate Cake``: Cake that is chocolate, what more do you need to know",
+   "1" : "Chocolate McChocolate Cake: Cake that is chocolate, what more do you need to know",
    "2" : "Salad: A boring choice for a boring person",
    "3" : "Hot Chocolate: With Coconut milk to bring that warm chocolately cozyness",
    "4" : "Costa'lot Special: Basically just two slices of toast with jam and no butter, but we've called it special so will charge the cost of a whole loaf"
@@ -28,44 +28,33 @@ order2 = {
     "status" : "PREPARING",
 }
 
+orders = [order1,order2]
+
+
 def show_food_options(): 
        for key, value in food_order.items():
                 print(key, value)
 
 def show_order_list():
-       print("Order '1' ")
-       for key, value in order1.items():
-                print(key, value)
-
-def show_order_list2():
-       print("Order '2'")
-       for key, value in order2.items():
-                print(key, value)
+      for index,order in enumerate(orders):
+          print(index,order)
+      
 
 
-def add_order():
+def add_order_george():
     my_order = (input('I wanna a order a?'))
     print(f"Thank you for placing your order for a {food_order [my_order]}, we now need some details from you?")
     order_name = input("what's your name mate?")
     order_address = input("where do you live then?")
     order_number = input("Digits?")
-    order1["customer_name"] = (order_name)
-    order1["customer_address"] =(order_address)
-    order1["customer_phone"] = (order_number)
-    show_order_list ()
+    orders_george = {}
+    orders_george["customer_name"] = (order_name)
+    orders_george["customer_address"] =(order_address)
+    orders_george["customer_phone"] = (order_number)
+    print(orders_george)  
+    orders.append(orders_george)
 
-def new_add_order():
-    my_order = int(input('I wanna a order a?'))
-    print(f"Thank you for placing your order for a {food_order [my_order]}, we now need some details from you")
-    order_name = input("what's your name mate?")
-    order_address = input("where do you live then?")
-    order_number = input("Digits?")
-    order2["customer_name"] = (order_name)
-    order2["customer_address"] =(order_address)
-    order2["customer_phone"] = (order_number)
-    show_order_list2()  
-    
-    
+
 
 def order_finished():
     q_order_finish = input("Press '1' to exit and start staring out of your window for the driver. Press '2' to go to the order system")
@@ -78,72 +67,40 @@ def order_finished():
 def order_system_fun():
     orders_options = input("What do you want to do then? (0). Show current orders? (1). Update an order status? (2). Update a order details? (3). Delete an order?")
     if (orders_options == '0'):
-        show_order_list() 
-        show_order_list2()
+        show_order_list()
         order_system_fun()
     if (orders_options == '1'):
-        show_order_list() 
-        show_order_list2()
-        status_update = (input('which order status do you want to update?'))
-        if (status_update == '1'):
-            status_change = input('What do you want to change it to?')
-            order1["status"] = (status_change)
-            #order1["status"] = "Delivered"
-            show_order_list()
-        elif (status_update == '2'):
-            status_change = input('What do you want to change it to?')
-            order2["status"] = (status_change)
-            show_order_list2()
+        show_order_list()
+        status_update = int(input('which order status do you want to update?'))
+        status_change = input('What do you want to change it to?')
+        orders[status_update]["status"] = status_change
+        show_order_list()
     if (orders_options == '2'):
-        show_order_list() 
-        show_order_list2()
-        status_update = (input('which order details do you want to update?'))
-        if (status_update == '1'):
-            print('Only update what you got wrong! Otherwise press enter so you dont mess up more!')
-            order_name1 = input("what's your name mate?")
-            if order_name1 == "":
-                order_name1 = order1["customer_name"]
-            order_address1 = input("where do you live then?")
-            if order_address1 == "":
-                order_address1 = order1["customer_address"]
-            order_number1 = input("Digits?")
-            if order_number1 == "":
-                order_number1 = order1["customer_phone"]
-            order1["customer_name"] = (order_name1)
-            order1["customer_address"] =(order_address1)
-            order1["customer_phone"] = (order_number1)
-            show_order_list()
-        elif (status_update == '2'):
-            print('Only update what you got wrong! Otherwise press enter so you dont mess more up!')
-            order_name1 = input("what's your name mate?")
-            if order_name1 == "":
-                order_name1 = order2["customer_name"]
-            order_address1 = input("where do you live then?")
-            if order_address1 == "":
-                order_address1 = order2["customer_address"]
-            order_number1 = input("Digits?")
-            if order_number1 == "":
-                order_number1 = order2["customer_phone"]
-            order2["customer_name"] = (order_name1)
-            order2["customer_address"] =(order_address1)
-            order2["customer_phone"] = (order_number1)
-            show_order_list2()
+        show_order_list()
+        status_update = int(input('which order details do you want to update?'))
+        print('Only update what you got wrong! Otherwise press enter so you dont mess up more!')
+        order_name1 = input("what's your name mate?")
+        if order_name1 == "":
+                pass
+        order_address1 = input("where do you live then?")
+        if order_address1 == "":
+                order_address1 = orders[status_update]["customer_address"] = order_address1
+        order_number1 = input("Digits?")
+        if order_number1 == "":
+                pass
+        orders[status_update]["customer_name"] = order_name1
+        orders[status_update]["customer_address"] = order_address1
+        orders[status_update]["customer_number"] = order_number1
+        show_order_list()
+        
            
 
     if (orders_options == '3'):
-        show_order_list() 
-        show_order_list2()
-        delete_order= input('Alright, but you aint getting your money back! What order is it?')
-        if delete_order == '1':
-            dict.clear (order1)
-            show_order_list() 
-            show_order_list2()
-            print('Thanks for the free cash LOSER!')
-        if delete_order == '2':
-            dict.clear (order2)
-            show_order_list() 
-            show_order_list2()
-            print('Thanks for the free cash LOSER!')
+        show_order_list()
+        delete_order= int(input('Alright, but you aint getting your money back! What order is it?'))
+        del orders[delete_order]
+        show_order_list()
+        print('Thanks for the free cash LOSER!')
        
 #The actual code
 
@@ -151,7 +108,7 @@ while(True):
     print("This is the Costa'lot app! To exit app choose 0, to see our options choose 1:")
     menu = input()
     if (menu == '0') or (menu == 'no'):
-        print("FINE GO!!!!!! I'll get your money next time!'") 
+        print("FINE GO! Our Chocolate Cake is AMAZING, I'll get your money next time!'") 
         break
 
     elif (menu == '1') or (menu == 'yes'):
@@ -160,11 +117,12 @@ while(True):
         choice =  (input('Hurry up and pick something would you?'))
     
     if (choice == '0'):
-        print('Sending you back to the start.')
+        print("FINE GO! Our Chocolate Cake is AMAZING, I'll get your money next time!'") 
+        break
            
     elif (choice == '1'):
         show_food_options()
-        new_add_order()
+        add_order_george()
         order_finished()
         break
 
@@ -174,7 +132,7 @@ while(True):
         custom_1 = (f"{custom}: {describe}")
         food_order [5] =  (custom_1)
         show_food_options()
-        new_add_order()
+        add_order_george()
         order_finished()
         break
         
@@ -188,7 +146,7 @@ while(True):
         item_1 = (f"{item_change}: {item_description}")
         food_order[update_item] = item_1
         show_food_options()
-        new_add_order()
+        add_order_george()
         order_finished()
         break
         
@@ -207,8 +165,7 @@ while(True):
         break
         
 
-    
-        # order_system_fun()
+
 
             
             
