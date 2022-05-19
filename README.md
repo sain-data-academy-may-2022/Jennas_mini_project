@@ -1,8 +1,8 @@
 # Jennas_mini_project
 
-## J's Costalot!!!
+## Costalot!!!
 
-## Manifesto
+## App Manifesto
 
 To build an app that will charge customer's an extortionate amount of money for very easy to make and cheap to produce items, whilst providing a terrible customer service. 
 
