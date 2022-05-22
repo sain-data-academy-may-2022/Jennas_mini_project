@@ -5,7 +5,7 @@ login = {
 
 def password():
    while(True):
-    username = input('usernam : ')
+    username = input('username : ')
     password = getpass.getpass('password :')
     if username in login and login[username]==password:
         print('Manager Menu', username) 
