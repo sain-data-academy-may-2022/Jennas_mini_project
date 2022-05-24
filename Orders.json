@@ -20,11 +20,5 @@
         "status": "PREPARING",
         "food": "Chocolate McChocolate Cake"
     },
-    {
-        "customer_name": "Jenna",
-        "customer_address": "Thorpe",
-        "customer_phone": "123",
-        "status": "PREPARING",
-        "food": "Chocolate McChocolate Cake"
-    }
+
 ]
