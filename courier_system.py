@@ -11,11 +11,11 @@ def show_list():
 def Courier_list_fun():
     while(True):
         courier_options = input("""Couriers Menu  
-        0. Return to Managers Menu 
-        1. Show current couriers names
-        2. Add Courier
-        3. Update a couriers details. 
-        4. Delete a courier.""")
+        (0) Return to Managers Menu 
+        (1) Show current couriers names
+        (2) Add Courier
+        (3) Update a couriers details. 
+        (4) Delete a courier.""")
         
         if (courier_options == '0'): 
             from mini_project import backend
@@ -31,6 +31,8 @@ def Courier_list_fun():
             courier_update = (input('add courier name '))
             Courier_list.append(courier_update)
             show_list()
+            with open("couriers.json", "w") as file:
+                json.dump(Courier_list, file)
             Courier_list_fun()
 
 
@@ -41,6 +43,8 @@ def Courier_list_fun():
             update = input('what would you like to update it to?')
             Courier_list[courier_update] = update
             show_list()
+            with open("couriers.json", "w") as file:
+                json.dump(Courier_list, file)
             Courier_list_fun()
 
         if (courier_options =='4'):
@@ -49,14 +53,16 @@ def Courier_list_fun():
             courier_update = int(input('Please choose number of courier you want to delete'))
             del Courier_list [courier_update]
             show_list()
+            with open("couriers.json", "w") as file:
+                json.dump(Courier_list, file)
             Courier_list_fun()
 
         else:
             print("Come on mate, I know we have bad days, but this.....TRY AGAIN")
 
 
-Courier_list_fun()
-with open("couriers.json", "w") as file:
-        json.dump(Courier_list, file)
+# Courier_list_fun()
+# with open("couriers.json", "w") as file:
+#         json.dump(Courier_list, file)
 
 

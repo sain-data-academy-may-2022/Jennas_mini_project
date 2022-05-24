@@ -2,6 +2,7 @@ import json
 import getpass
 import os
 from turtle import update
+from courier_system import Courier_list_fun
 
 
 from password import password 
@@ -15,18 +16,19 @@ from password import password
 
 
 product = {
-    '0' : '0. Imma head out ',
-    '1' : '1. See the menu!!!!',
-    '2' : "2. I'm a princess make something special?",
-    '3' : '3. Close, but you want to mix it up a litte?',
-    '4' : '4. Get rid of that',
+    '1' : '(0) Imma head out ',
+    '1' : '(1) See the menu!!!!',
+    '2' : "(2) I'm a princess make something special?",
+    '3' : '(3) Close, but you want to mix it up a litte?',
+    '4' : '(4) Get rid of that',
 }
 
 food_order ={
-   "0" : "Chocolate McChocolate Cake: Cake that is chocolate, what more do you need to know",
-   "1" : "Salad: A boring choice for a boring person",
-   "2" : "Hot Chocolate: With Coconut milk to bring that warm chocolately cozyness",
-   "3" : "Costa'lot Special: Two slices of toast with jam, but we'll charge the cost of a whole loaf"
+   "(0)" : """Chocolate McChocolate Cake: Cake that is chocolate, what more do you need to know""",
+   "(1)" : "Salad: A boring choice for a boring person",
+   "(2)" : "Hot Chocolate: With Coconut milk to bring that warm chocolately cozyness",
+   "(3)" : """Costa'lot Special: Two slices of toast with jam, but we'll charge the cost of a whole loaf
+   """
 }
 
 food_list = ['Chocolate McChocolate Cake','Salad','Hot Chocolate', "Costa'lot Special"]
@@ -39,12 +41,13 @@ food_list = ['Chocolate McChocolate Cake','Salad','Hot Chocolate', "Costa'lot Sp
 #     "food" : "Hot Chocolate"
 # }
 
+#main menu clear screen? 
+
 with open('Orders.json', "r") as file:
     orders = json.load(file)
 
 if type(orders) is dict:
     orders = [orders]
-
 
 
 def show_food_options():
@@ -58,7 +61,7 @@ def show_food_option_nums():
 def show_order_list():
       print("Order List:")
       with open ('Orders.json', 'w') as file:#how to append rather that w
-                json.dump(orders, file) 
+          json.dump(orders, file, indent=4) 
       for index,order in enumerate(orders):
           print(index,order) 
 
@@ -66,8 +69,14 @@ def show_order_list():
 # #warm up fun 20/3
 def add_order_george():
     show_food_options()
-    my_order = int(input('I wanna a order a?'))
-    print(f"FINALLY, you've chosen a {food_list[my_order]}, we now need some details from you?")
+    my_order = int(input("""
+    I wanna a order a?"""))
+
+
+    print(f"""
+    FINALLY, you've chosen a {food_list[my_order]}, we now need some details from you?
+    
+    """)
     order_name = input("what's your name mate?")
     order_address = input("where do you live then?")
     order_number = input("Digits?")
@@ -85,23 +94,23 @@ def add_order_george():
     
 def order_system_fun():
     orders_options = input("""What do you want to do then? 
-    0. Exit
-    1. Show current orders? 
-    2. Update an order status? 
-    3. Update a order details? 
-    4. Delete an order?""")
+    (0) Exit
+    (1) Show current orders? 
+    (2) Update an order status? 
+    (3) Update a order details? 
+    (4) Delete an order?""")
     
 
     if (orders_options == '0'): 
         print ('See you later loser')
 
-
-    if (orders_options == '1'): #show current orders 
+#show current orders 
+    if (orders_options == '1'): 
         show_order_list()
         order_system_fun()
-
-
-    if (orders_options == '2'): #update an order status 
+ 
+#update an order status 
+    if (orders_options == '2'): 
         show_order_list()
         status_update = int(input('which order status do you want to update?'))
         status_change = input('What do you want to change it to?')
@@ -112,17 +121,14 @@ def order_system_fun():
 
     if (orders_options == '3'): #update order details 
         show_order_list()
-        status_update = int(input('which order details do you want to update?'))
+        status_update = int(input('What idiot wants their order changed then?'))
         for key, value in orders[status_update].items():
-            y_n = input(f"Do you wish to update {key} from {value}? >").upper()
+            y_n = input(f"Is it the {key} from {value}? >").upper()
             if y_n == "Y":
                 new_value = input(f'Enter new value for {key}. >') 
-                orders[status_update]["key"] = new_value
+                orders[status_update][key] = new_value
             else:
                 continue
-        with open ('Orders.json', 'w') as file:#how to append rather that w
-            json.dump(orders, file) 
-
         show_order_list()
         order_system_fun()
         
@@ -133,6 +139,7 @@ def order_system_fun():
         delete_order= int(input('Alright, but you aint getting your money back! What order is it?'))
         del orders[delete_order]
         show_order_list()
+        
         print('Thanks for the free cash LOSER!')
 
 
@@ -145,7 +152,6 @@ def backend():
             order_system_fun()
              
     elif (managers_menu == '1'):
-        from courier_system import Courier_list_fun
         Courier_list_fun()
 
        
@@ -165,7 +171,10 @@ while(True):
     if (menu == '1') or (menu == 'yes'):
         for key, value in product.items() :
                 print(value)
-        choice =  (input('Hurry up and pick something would you?')) 
+        choice =  (input("""
+        Hurry up and pick something would you?
+        
+        """)) 
 
         if (choice == '1'):
             add_order_george()
