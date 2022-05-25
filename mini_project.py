@@ -1,8 +1,10 @@
+import colorsys
 import json
 import getpass
 import os
-from turtle import update
-from courier_system import Courier_list_fun
+import random
+from turtle import color, update
+from courier_system import Courier_list, Courier_list_fun
 
 
 from password import password 
@@ -33,14 +35,6 @@ food_order ={
 
 food_list = ['Chocolate McChocolate Cake','Salad','Hot Chocolate', "Costa'lot Special"]
 
-# order1 = {
-#     "customer_name" : "Jenna",
-#     "customer_address" :"Thorpe" ,
-#     "customer_phone" : "07999999999",
-#     "status" : "PREPARING",
-#     "food" : "Hot Chocolate"
-# }
-
 #main menu clear screen? 
 
 with open('Orders.json', "r") as file:
@@ -65,8 +59,6 @@ def show_order_list():
       for index,order in enumerate(orders):
           print(index,order) 
 
-
-# #warm up fun 20/3
 def add_order_george():
     show_food_options()
     my_order = int(input("""
@@ -80,17 +72,18 @@ def add_order_george():
     order_name = input("what's your name mate?")
     order_address = input("where do you live then?")
     order_number = input("Digits?")
-    orders_george = {} #create new dictorary 
+    orders_george = {} 
     orders_george["customer_name"] = (order_name)
     orders_george["customer_address"] =(order_address)
     orders_george["customer_phone"] = (order_number)
     orders_george["status"] = ('PREPARING')
     orders_george["food"]= (food_list[my_order])
+    orders_george["courier"] = random.choice(Courier_list)
     orders.append(orders_george)
     show_order_list()
-    print('Okay you can start staring out of your window for the driver, if you need to change anything it will cost you.')
-        
-     #the big one - task we were set this week        
+    
+    print("""Okay you can start staring out of your window for the driver, if you need to change anything it will cost you.""")
+          
     
 def order_system_fun():
     orders_options = input("""What do you want to do then? 
@@ -118,23 +111,22 @@ def order_system_fun():
         show_order_list()
         order_system_fun()
 
-
-    if (orders_options == '3'): #update order details 
+ #update order details 
+    if (orders_options == '3'): 
         show_order_list()
         status_update = int(input('What idiot wants their order changed then?'))
         for key, value in orders[status_update].items():
-            y_n = input(f"Is it the {key} from {value}? >").upper()
-            if y_n == "Y":
-                new_value = input(f'Enter new value for {key}. >') 
-                orders[status_update][key] = new_value
-            else:
+            new_value = input(f'Is it{key}? If by some miracle they have actually got it right just press enter >')
+            if new_value == "":
                 continue
+            else:
+                orders[status_update][key] = new_value
         show_order_list()
         order_system_fun()
         
            
-
-    if (orders_options == '4'): #delete an order 
+#delete an order 
+    if (orders_options == '4'):  
         show_order_list()
         delete_order= int(input('Alright, but you aint getting your money back! What order is it?'))
         del orders[delete_order]

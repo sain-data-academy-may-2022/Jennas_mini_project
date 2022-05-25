@@ -1,13 +1,14 @@
 import getpass 
 login = {
-    'mgr001' : '8055'
+    'Username' : 'mgr001',
+    'Password' : '8055'
 }
 
 def password():
    while(True):
     username = input('username : ')
     password = getpass.getpass('password :')
-    if username in login and login[username]==password:
+    if username == (login['Username']) and password == (login['Password']):
         print('Manager Menu', username) 
         break
     else:
