@@ -38,5 +38,13 @@
         "status": "Delivered",
         "food": "Vegan Pizza",
         "courier": "JS Drop-Drop"
+    },
+    {
+        "customer_name": "Rurari",
+        "customer_address": "Teams",
+        "customer_phone": "000",
+        "status": "PREPARING",
+        "food": "Vegan Pizza",
+        "courier": "Uber-Starve  "
     }
 ]

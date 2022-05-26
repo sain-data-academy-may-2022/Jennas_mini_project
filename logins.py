@@ -1,12 +1,20 @@
 import json
 import getpass
 
-with open('logins.json') as file:
-    logins_list = json.load(file)
+with open('logins.json', "r") as file:
+    usernames = json.load(file)
+
+with open('passwords.json', "r") as file:
+    passwords = json.load(file)
+
 
 def show_list():
-    for index,name, in enumerate(logins_list):
-                print(index,name,)
+    for index,name, in enumerate(usernames):
+        print(index,name,)
+    with open("logins.json", "w") as file:
+        json.dump(usernames, file ) 
+    with open("passwords.json", "w") as file:
+        json.dump(passwords, file ) 
 
 def logins_list_fun():
     logins_options = input(""" Logins Menu 
@@ -24,36 +32,36 @@ def logins_list_fun():
         logins_list_fun()
         
     if (logins_options == '2'):
-        username = input("what username do you want")
-        password = input("what is your password")
-        Accounts = {}
-        Accounts ["Username"] = (username)
-        Accounts ["Password"] = (password)
-        logins_list.append(Accounts)
+        username = input("what username do you want? ")
+        password = int(input("what is your password? "))
+        usernames.append(username)
+        passwords.append(password)
         show_list()
         logins_list_fun()
         
 
     if (logins_options =='3'):
         show_list()
-        Account_update = int(input("Please selected the number of the account you want to update"))
-        for key, value in logins_list[Account_update].items():
-            new_info = input(f'Is it {key}? If by some miracle they have actually got it right just press enter, if not what do we need to change it to? >')
-            if new_info == "":
-                continue
-            else:
-                logins_list[Account_update][key] = new_info
+        Account_update = int(input("Please selected the number of the login you want to update? If its the pass work you want to change just press enter "))
+        change = input(f"What do you want to change {usernames[Account_update]} to?")
+        if change == '':
+            pass
+        else:
+            usernames[Account_update] = change
+        password_update = int(input("Do you want to change the password too? If not leave it blank? "))
+        if password_update == "":
+            pass
+        else:
+            passwords[Account_update] = password_update
         show_list()
         logins_list_fun()
 
     if (logins_options == '4'):  
         show_list()
         delete_login = int(input("Alright, who's left now then? What login is it?"))
-        del logins_list [delete_login]
+        del usernames[delete_login]
         show_list()
         logins_list_fun()
         
         print('and you never have to think of them again!')
 
-    with open("logins.json", "w") as file:
-                json.dump(logins_list, file, indent=4) 

@@ -8,13 +8,13 @@ if type(orders1) is dict:
 
 def show_order_list():
       print("Order List:")
-      with open ('Orders.json', 'w') as file:#how to append rather that w
+      with open ('Orders.json', 'w') as file:
           json.dump(orders1, file, indent=4) 
       for index,order in enumerate(orders1):
           print(index,order) 
 
 def order_system_fun():
-    orders_options = input("""What do you want to do then? 
+    orders_options = input("""Orders Menu  
 
     (0) Exit
     (1) Show current orders? 

@@ -46,7 +46,7 @@ def add_order_george():
     orders_george["customer_phone"] = (order_number)
     orders_george["status"] = ('PREPARING')
     orders_george["food"]= (food_list[my_order])
-    orders_george["courier"] = random.choice(Courier_list)
+    orders_george["courier"] = random.choice(Courier_list) #RANDOM CHOICE OF COURIER
     orders1.append(orders_george)
     show_order_list()
     
