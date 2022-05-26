@@ -14,11 +14,12 @@ food_order ={
 }
 
 food_list = ['Chocolate McChocolate Cake','Salad','Hot Chocolate', "Costa'lot Special", "Vegan Pizza"]
+    
 
 def show_food_options():
     for key, value in food_order.items():
-        print(Fore.RED + key,value)
-        print(Style.RESET_ALL)
+        print(key,value)
+       
 
 def show_food_option_nums(): 
       for index,name, in enumerate(food_list):
