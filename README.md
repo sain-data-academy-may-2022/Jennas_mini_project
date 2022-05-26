@@ -4,7 +4,7 @@
 
 ## App Manifesto
 
-To build an app that will charge customer's an extortionate amount of money for very easy to make and cheap to produce items, whilst providing a terrible customer service. 
+To build an app that will charge customer's an extortionate amount of money for very easy to make and cheap to produce items, whilst providing a terrible customer service. Delete this 
 
 ## Running
 
