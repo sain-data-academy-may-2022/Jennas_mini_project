@@ -1,13 +1,9 @@
-import json
-import getpass
-import os
 import random
 from courier_system import Courier_list, Courier_list_fun 
 from logins import logins_list_fun
 from Colour import prPurple
 from Colour import Colour_red
 from colorama import Fore, Back, Style
-import orders 
 from password import password 
 from orders import show_order_list, order_system_fun , orders1
 
@@ -51,7 +47,7 @@ def show_food_option_nums():
           print(index,name,)
 
 def add_order_george():
-    show_food_option_nums()
+    show_food_options()
     my_order = int(input("""
     I wanna a order a?"""))
 
@@ -86,7 +82,7 @@ def backend():
 You're the best! What do you want to do with these numptys orders? 
 (0) Go to the order system
 (1) Go to the courier system
-(2) Go to the account system
+(2) Go to the login system
     
     """
     )

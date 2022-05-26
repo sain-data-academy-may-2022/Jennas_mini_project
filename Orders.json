@@ -30,5 +30,13 @@
         "status": "PREPARING",
         "food": "Chocolate McChocolate Cake",
         "courier": "Uber-Starve  "
+    },
+    {
+        "customer_name": " Sarah",
+        "customer_address": "Goldsworth Park ",
+        "customer_phone": "898",
+        "status": "Delivered",
+        "food": "Vegan Pizza",
+        "courier": "JS Drop-Drop"
     }
 ]

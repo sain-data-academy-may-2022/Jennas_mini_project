@@ -9,10 +9,10 @@ def show_list():
                 print(index,name,)
 
 def logins_list_fun():
-    logins_options = input("""   
+    logins_options = input(""" Logins Menu 
     (0) Exit
     (1) Show current logins
-    (2) Add an account
+    (2) Add a login
     (3) Update login details. 
     (4) Delete a login.""")
     

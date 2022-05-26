@@ -24,7 +24,8 @@ def order_system_fun():
     
 
     if (orders_options == '0'): 
-        print ('See you later loser')
+        print ("""
+        Laters""")
 
 #show current orders 
     if (orders_options == '1'): 
@@ -45,7 +46,7 @@ def order_system_fun():
         show_order_list()
         status_update = int(input('What idiot wants their order changed then?'))
         for key, value in orders1[status_update].items():
-            new_value = input(f'Is it{key}? If by some miracle they have actually got it right just press enter >')
+            new_value = input(f'Is it {key}? If by some miracle they have actually got it right just press enter >')
             if new_value == "":
                 continue
             else:
