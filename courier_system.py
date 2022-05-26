@@ -11,15 +11,17 @@ def show_list():
 def Courier_list_fun():
     while(True):
         courier_options = input("""Couriers Menu  
-        (0) Return to Managers Menu 
+        (0) Exit
         (1) Show current couriers names
         (2) Add Courier
         (3) Update a couriers details. 
         (4) Delete a courier.""")
         
         if (courier_options == '0'): 
-            from mini_project import backend
-            backend() #ASK WHY IT RUNS THE FULL CODE RATHER THAN THE FUCNTION
+            ("See ya")
+            break
+        
+            
             
         if (courier_options == '1'):
             show_list()
@@ -58,7 +60,8 @@ def Courier_list_fun():
             Courier_list_fun()
 
         else:
-            print("Come on mate, I know we have bad days, but this.....TRY AGAIN")
+            print("""
+            Come on mate, I know we have bad days, but this.....TRY AGAIN""")
 
 
 # Courier_list_fun()

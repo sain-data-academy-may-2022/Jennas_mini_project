@@ -1,14 +1,18 @@
-import colorsys
 import json
 import getpass
 import os
 import random
-from turtle import color, update
-from courier_system import Courier_list, Courier_list_fun
-
-
+from courier_system import Courier_list, Courier_list_fun 
+from logins import logins_list_fun
+from Colour import prPurple
+from Colour import Colour_red
+from colorama import Fore, Back, Style
+import orders 
 from password import password 
-# def clear_screen():
+from orders import show_order_list, order_system_fun , orders1
+
+
+# def clear_screen()
 #     # It is for MacOS and Linux(here, os.name is 'posix')
 #     if os.name == 'posix':
 #         _ = os.system('clear')
@@ -29,38 +33,25 @@ food_order ={
    "(0)" : """Chocolate McChocolate Cake: Cake that is chocolate, what more do you need to know""",
    "(1)" : "Salad: A boring choice for a boring person",
    "(2)" : "Hot Chocolate: With Coconut milk to bring that warm chocolately cozyness",
-   "(3)" : """Costa'lot Special: Two slices of toast with jam, but we'll charge the cost of a whole loaf
-   """
+   "(3)" : "Costa'lot Special: Two slices of toast with jam, but we'll charge the cost of a whole loaf""",
+   "(4)" : """Vegan Pepperoni Pizza : With lots of meat and chesee from animals, just what you Vegan's want right?"""
 }
 
-food_list = ['Chocolate McChocolate Cake','Salad','Hot Chocolate', "Costa'lot Special"]
+food_list = ['Chocolate McChocolate Cake','Salad','Hot Chocolate', "Costa'lot Special", "Vegan Pizza"]
 
 #main menu clear screen? 
 
-with open('Orders.json', "r") as file:
-    orders = json.load(file)
-
-if type(orders) is dict:
-    orders = [orders]
-
-
 def show_food_options():
     for key, value in food_order.items():
-        print(key,value)
+        print(Fore.RED + key,value)
+        print(Style.RESET_ALL)
 
 def show_food_option_nums(): 
       for index,name, in enumerate(food_list):
           print(index,name,)
 
-def show_order_list():
-      print("Order List:")
-      with open ('Orders.json', 'w') as file:#how to append rather that w
-          json.dump(orders, file, indent=4) 
-      for index,order in enumerate(orders):
-          print(index,order) 
-
 def add_order_george():
-    show_food_options()
+    show_food_option_nums()
     my_order = int(input("""
     I wanna a order a?"""))
 
@@ -79,92 +70,54 @@ def add_order_george():
     orders_george["status"] = ('PREPARING')
     orders_george["food"]= (food_list[my_order])
     orders_george["courier"] = random.choice(Courier_list)
-    orders.append(orders_george)
+    orders1.append(orders_george)
     show_order_list()
     
-    print("""Okay you can start staring out of your window for the driver, if you need to change anything it will cost you.""")
+    Colour_red("""
+
+    Okay you can start staring out of your window for the driver, if you need to change anything it will cost you.""")
           
     
-def order_system_fun():
-    orders_options = input("""What do you want to do then? 
-    (0) Exit
-    (1) Show current orders? 
-    (2) Update an order status? 
-    (3) Update a order details? 
-    (4) Delete an order?""")
-    
-
-    if (orders_options == '0'): 
-        print ('See you later loser')
-
-#show current orders 
-    if (orders_options == '1'): 
-        show_order_list()
-        order_system_fun()
- 
-#update an order status 
-    if (orders_options == '2'): 
-        show_order_list()
-        status_update = int(input('which order status do you want to update?'))
-        status_change = input('What do you want to change it to?')
-        orders[status_update]["status"] = status_change
-        show_order_list()
-        order_system_fun()
-
- #update order details 
-    if (orders_options == '3'): 
-        show_order_list()
-        status_update = int(input('What idiot wants their order changed then?'))
-        for key, value in orders[status_update].items():
-            new_value = input(f'Is it{key}? If by some miracle they have actually got it right just press enter >')
-            if new_value == "":
-                continue
-            else:
-                orders[status_update][key] = new_value
-        show_order_list()
-        order_system_fun()
-        
-           
-#delete an order 
-    if (orders_options == '4'):  
-        show_order_list()
-        delete_order= int(input('Alright, but you aint getting your money back! What order is it?'))
-        del orders[delete_order]
-        show_order_list()
-        
-        print('Thanks for the free cash LOSER!')
-
-
 def backend():
+    
     password()
-    managers_menu = input ("""You're the best! What do you want to do with these numptys orders? 
-    (0) Go to the order system
-    (1) Go to the courier system""")
+    managers_menu = input ("""
+    
+You're the best! What do you want to do with these numptys orders? 
+(0) Go to the order system
+(1) Go to the courier system
+(2) Go to the account system
+    
+    """
+    )
     if (managers_menu == '0'):
-            order_system_fun()
-             
+        order_system_fun()
+            
     elif (managers_menu == '1'):
         Courier_list_fun()
+
+    elif (managers_menu== '2'):
+        logins_list_fun()
 
        
 #AND WE"RE DONE WITH THE FUNCTIONS!! Now time for the main event "The actual code"
 
 while(True):
-    print("""This is the Costa'lot app!
-    (0) To exit app.
-    (1) To see our food options and place an order.
-    (2) For the governer only (Do you know the magic word? If not don't even try it!)""")
+    Colour_red("""This is the Costa'lot app!
+(0) To exit app.
+(1) To see our food options and place an order.
+(2) For the governer only (Do you know the magic word? If not don't even try it!)""")
 
     menu = input()
     if (menu == '0') or (menu == 'no'):
-        print("FINE GO! Our Chocolate Cake is AMAZING, I'll get your money next time!'") 
+        Colour_red("FINE GO! Our Chocolate Cake is AMAZING, I'll get your money next time!'") 
         break
 
     if (menu == '1') or (menu == 'yes'):
         for key, value in product.items() :
                 print(value)
         choice =  (input("""
-        Hurry up and pick something would you?
+Hurry up and pick something would you?
         
         """)) 
 
@@ -173,19 +126,21 @@ while(True):
             break
 
         elif (choice == '2'):
-            custom = input('Alright princess, What special dish can your slave make for you?')
-            describe = input ('Any particular type your highness?')
+            custom = input("""
+Alright princess, What special dish can your slave make for you?""")
+            describe = input (
+"""Any particular type your highness?""")
             food_list.append(custom)
             custom_1 = (f"{custom}: {describe}")
-            food_order[4] = custom_1 
-            show_food_options()
+            food_order[5] = custom_1 
             add_order_george()
             break
             
                 
         elif (choice == '3'):
-            print(('Alright Boss, what do you want to change?'))
             show_food_options()
+            print(("""Alright Boss, what do you want to change?
+            """))
             update_item= input ()
             item_change = input('Just remeber your own ideas cost more, but what is it?')
             item_description = input('In more detail please?!?!')
@@ -197,12 +152,20 @@ while(True):
             
 
         elif (choice == '4'):
-            print('Alright miserable, what do you want to delete?')
-            show_food_options()
-            delete_item= input()
-            del food_order[delete_item]
-            show_food_options()
-            print('ARE YOU HAPPY NOW GRUMPY?!')
+            show_food_option_nums()
+            print("""
+Alright miserable, what do you want to delete?""")
+            delete_item= int(input())
+            if delete_item == 1:
+                print("Great choice, I hated that option anyway!")
+                del food_list[delete_item]
+                show_food_option_nums()
+            else:
+                print("""
+ARE YOU HAPPY NOW GRUMPY?!
+""")
+                del food_list[delete_item]
+                show_food_option_nums()
             break
         
         else:

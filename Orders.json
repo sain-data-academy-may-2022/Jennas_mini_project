@@ -16,11 +16,19 @@
         "courier": "Gruel-Hub"
     },
     {
-        "customer_name": "Neo",
-        "customer_address": "Matrix",
-        "customer_phone": "000",
-        "status": "PREPARING",
-        "food": "Salad",
+        "customer_name": "Connor",
+        "customer_address": "holborn",
+        "customer_phone": "898",
+        "status": "delivered",
+        "food": "Chocolate McChocolate Cake",
         "courier": "Just Late"
+    },
+    {
+        "customer_name": "Ash Bash ",
+        "customer_address": "Middlepath",
+        "customer_phone": "4595",
+        "status": "PREPARING",
+        "food": "Chocolate McChocolate Cake",
+        "courier": "Uber-Starve  "
     }
 ]

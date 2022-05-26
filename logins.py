@@ -1,6 +1,5 @@
 import json
-import getpass 
-from mini_project import backend
+import getpass
 
 with open('logins.json') as file:
     logins_list = json.load(file)
@@ -9,18 +8,16 @@ def show_list():
     for index,name, in enumerate(logins_list):
                 print(index,name,)
 
-    
-
 def logins_list_fun():
     logins_options = input("""   
-    (0) Return to Managers Menu 
+    (0) Exit
     (1) Show current logins
     (2) Add an account
     (3) Update login details. 
     (4) Delete a login.""")
     
     if (logins_options == '0'): 
-        backend() 
+        print("See ya")
         
     if (logins_options == '1'):
         show_list()
