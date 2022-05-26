@@ -103,7 +103,10 @@ You're the best! What do you want to do with these numptys orders?
 #AND WE"RE DONE WITH THE FUNCTIONS!! Now time for the main event "The actual code"
 
 while(True):
-    Colour_red("""This is the Costa'lot app!
+    Colour_red(""" 
+                                ---- Costa'lot ---- 
+                                
+
 (0) To exit app.
 (1) To see our food options and place an order.
 (2) For the governer only (Do you know the magic word? If not don't even try it!)""")
