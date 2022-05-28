@@ -1,31 +1,33 @@
-import random
-from colorama import Fore, Style
-from Colour import Colour_red
+import csv
 from courier_system import Courier_list
-from orders import show_order_list, orders1
+from orders import orders1, show_order_list
+import random
+from Colour import Colour_red
 
 
-food_order ={
-   "(0)" : """Chocolate McChocolate Cake: Cake that is chocolate, what more do you need to know""",
-   "(1)" : "Salad: A boring choice for a boring person",
-   "(2)" : "Hot Chocolate: With Coconut milk to bring that warm chocolately cozyness",
-   "(3)" : "Costa'lot Special: Two slices of toast with jam, but we'll charge the cost of a whole loaf""",
-   "(4)" : """Vegan Pepperoni Pizza : With lots of meat and chesee from animals, just what you Vegan's want right?"""
-}
+with open("Food.csv", "r") as f:
+        csv_reader = csv.DictReader(f)
+        food_list = list(csv_reader)
 
-food_list = ['Chocolate McChocolate Cake','Salad','Hot Chocolate', "Costa'lot Special", "Vegan Pizza"]
-    
+id = [ sub['ID'] for sub in food_list ]
+name = [ sub['Name'] for sub in food_list ]
+description = [sub['Description'] for sub in food_list ]
+price = [sub['Price'] for sub in food_list ]
+
+
+
+
 
 def show_food_options():
-    for key, value in food_order.items():
-        print(key,value)
+    id = [ sub['ID'] for sub in food_list ]
+    name = [ sub['Name'] for sub in food_list ]
+    description = [sub['Description'] for sub in food_list ]
+    price = [sub['Price'] for sub in food_list ]
+    for i,n,d,p in zip(id, name, description, price):
+        print(i, n, d, p)
+
+    
        
-
-def show_food_option_nums(): 
-      for index,name, in enumerate(food_list):
-          print(index,name,)
-
-
 
 def add_order_george():
     show_food_options()
@@ -34,7 +36,7 @@ def add_order_george():
 
 
     print(f"""
-    FINALLY, you've chosen a {food_list[my_order]}, we now need some details from you?
+    FINALLY, you've chosen a {name[my_order]}, we now need some details from you?
     
     """)
     order_name = input("what's your name mate?")
@@ -49,6 +51,7 @@ def add_order_george():
     orders_george["courier"] = random.choice(Courier_list) #RANDOM CHOICE OF COURIER
     orders1.append(orders_george)
     show_order_list()
+    
     
     Colour_red("""
 
