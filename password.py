@@ -1,8 +1,8 @@
 import getpass 
-#Alex code - made better ^_^
+#Alex code - with adjustments ^_^
 
 import json
-from turtle import back
+
 
 with open('logins.json', "r") as file:
     usernames = json.load(file)

@@ -3,31 +3,15 @@
         "customer_name": "Tom",
         "customer_address": "Thorpe",
         "customer_phone": "123",
-        "status": "PREPARING",
+        "status": "Delivered",
         "food": "Chocolate McChocolate Cake",
         "courier": "Uber-Starve"
-    },
-    {
-        "customer_name": "Bob",
-        "customer_address": "Bobtown",
-        "customer_phone": "808",
-        "status": "PREPARING",
-        "food": "Salad",
-        "courier": "Gruel-Hub"
-    },
-    {
-        "customer_name": "Connor",
-        "customer_address": "holborn",
-        "customer_phone": "898",
-        "status": "delivered",
-        "food": "Chocolate McChocolate Cake",
-        "courier": "Just Late"
     },
     {
         "customer_name": "Ash Bash ",
         "customer_address": "Middlepath",
         "customer_phone": "4595",
-        "status": "PREPARING",
+        "status": "Delivered",
         "food": "Chocolate McChocolate Cake",
         "courier": "Uber-Starve  "
     },
@@ -40,11 +24,19 @@
         "courier": "JS Drop-Drop"
     },
     {
-        "customer_name": "Rurari",
-        "customer_address": "Teams",
-        "customer_phone": "000",
-        "status": "PREPARING",
+        "customer_name": "Bob",
+        "customer_address": "Bobtown",
+        "customer_phone": "808",
+        "status": "Delivered",
+        "food": "Chocolate McChocolate Cake",
+        "courier": "Just-Late"
+    },
+    {
+        "customer_name": "George ",
+        "customer_address": "London",
+        "customer_phone": "787",
+        "status": "Delivered",
         "food": "Vegan Pizza",
-        "courier": "Uber-Starve  "
+        "courier": "Just-Late"
     }
 ]

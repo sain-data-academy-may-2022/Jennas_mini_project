@@ -31,6 +31,7 @@ Couriers Menu
         if (courier_options == '1'):
             show_list() 
             Courier_list_fun()
+            break
             
 
         #add a courier 
@@ -39,6 +40,7 @@ Couriers Menu
             Courier_list.append(courier_update)
             show_list()
             Courier_list_fun()
+            break
             
 
         #update couriers details 
@@ -49,6 +51,7 @@ Couriers Menu
             Courier_list[courier_update] = update
             show_list()
             Courier_list_fun()
+            break
 
         #delete a courier 
 
@@ -58,6 +61,7 @@ Couriers Menu
             del Courier_list [courier_update]
             show_list()
             Courier_list_fun()
+            break
 
         else:
             print("""
