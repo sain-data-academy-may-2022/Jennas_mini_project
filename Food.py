@@ -5,19 +5,42 @@ from courier_system import Courier_list
 from orders import show_order_list, orders1
 
 
-food_order ={
-   "(0)" : """Chocolate McChocolate Cake: Cake that is chocolate, what more do you need to know""",
-   "(1)" : "Salad: A boring choice for a boring person",
-   "(2)" : "Hot Chocolate: With Coconut milk to bring that warm chocolately cozyness",
-   "(3)" : "Costa'lot Special: Two slices of toast with jam, but we'll charge the cost of a whole loaf""",
-   "(4)" : """Vegan Pepperoni Pizza : With lots of meat and chesee from animals, just what you Vegan's want right?"""
-}
+Food_dict =[
+    {'ID' : 0,
+    'Name': 'Chocolate McChocolate Cake: ',
+    'Description': 'Cake that is chocolate, what more do you need to know',
+    'Price': '£20'},
+
+    {'ID' : 1,
+    'Name': 'Salad: ',
+    'Description': 'A boring choice for a boring person',
+    'Price': '£666'},
+
+    {'ID' : 2,
+    'Name': 'Hot Chocolate:',
+    'Description': 'With Coconut milk to bring that warm chocolately cozyness',
+    'Price': '£10'
+    },
+
+    {'ID' : 3,
+    'Name': "Costa'lot Special: ",
+    'Description': "Two slices of toast with jam, but we'll charge the cost of a whole loaf",
+    'Price': '£12'
+    },
+
+    {'ID' : 4,
+    'Name': "Vegan Pepperoni Pizza: ",
+    'Description': "With lots of meat and chesee from animals, just what you Vegan's want right?",
+    'Price': '£23'}
+    ]
+
+
 
 food_list = ['Chocolate McChocolate Cake','Salad','Hot Chocolate', "Costa'lot Special", "Vegan Pizza"]
     
 
 def show_food_options():
-    for key, value in food_order.items():
+    for key, value in Food_dict.items():
         print(key,value)
        
 
