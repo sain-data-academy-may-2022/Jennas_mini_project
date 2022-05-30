@@ -54,5 +54,21 @@
             "Name": "Gruel-Hub",
             "Phone": "789"
         }
+    },
+    {
+        "customer_name": "Jenna",
+        "customer_address": "Thorpe",
+        "customer_phone": "123",
+        "status": "PREPARING",
+        "food": {
+            "ID": "0",
+            "Name": "Chocolate McChocolate Cake ",
+            "Description": "Cake that is chocolate, what more do you need to know",
+            "Price": "\u00a320"
+        },
+        "courier": {
+            "Name": "JS Drop Drop",
+            "Phone": "101112"
+        }
     }
 ]
