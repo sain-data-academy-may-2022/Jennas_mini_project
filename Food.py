@@ -1,11 +1,9 @@
 import csv
-from courier_system import Courier_list
 from orders import orders1, show_order_list
 import random
 import csv
 from colorama import Fore, Style
 from Colour import Colour_red
-from courier_system import Courier_list
 from orders import show_order_list, orders1
 from food_csv import open_a_csv
 

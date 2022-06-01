@@ -1,5 +1,4 @@
 import csv
-from Food_dict import food_order
 
 with open ('food.csv', 'r') as file:
         read = csv.DictReader(file)

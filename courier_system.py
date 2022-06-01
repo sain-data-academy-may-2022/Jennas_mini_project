@@ -1,17 +1,14 @@
-import json
-from csv_fun import show_csv, courier_list, create_a_csv
+import csv
+from courier_csv import open_a_csv, add_an_item_to_csv, update_csv, delete_csv
+
+with open ('courier.csv', 'r') as file:
+        read = csv.DictReader(file)
+        courier_list = list(read)
+
+        Name = [sub['Name'] for sub in courier_list]
+        Phone = [sub['Phone'] for sub in courier_list]
 
 
-with open('couriers.json') as file:
-    Courier_list = json.load(file)
-
-def show_list():
-    for index,name, in enumerate(Courier_list):
-                print(index,name,)
-    with open("couriers.json", "w") as file:
-                json.dump(Courier_list, file)
-
-    
 def Courier_list_fun():
     while(True):
         courier_options = input("""
@@ -31,37 +28,28 @@ Couriers Menu
             
         #shows courier list   
         if (courier_options == '1'):
-            show_list() 
+            open_a_csv()
             Courier_list_fun()
             break
             
 
         #add a courier 
         if (courier_options == '2'):
-            courier_update = (input('add courier name '))
-            Courier_list.append(courier_update)
-            show_list()
+            add_an_item_to_csv()
             Courier_list_fun()
             break
             
 
         #update couriers details 
         if (courier_options =='3'):
-            show_list()
-            courier_update = int(input('Please choose number of courier you want to update'))
-            update = input('what would you like to update it to?')
-            Courier_list[courier_update] = update
-            show_list()
+            update_csv()
             Courier_list_fun()
             break
 
         #delete a courier 
 
         if (courier_options =='4'):
-            show_list()
-            courier_update = int(input('Please choose number of courier you want to delete'))
-            del Courier_list [courier_update]
-            show_list()
+            delete_csv()
             Courier_list_fun()
             break
 
