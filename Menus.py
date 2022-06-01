@@ -3,7 +3,8 @@ from orders import order_system_fun
 from courier_system import Courier_list_fun
 from logins import logins_list_fun
 from Colour import Colour_red
-from Food import add_order_george, food_list, food_order, show_food_options, show_food_option_nums
+from Food import add_order_george, food_list, show_food_options
+from food_csv import add_an_item_to_csv, update_csv, delete_csv
        
 #all menus in the same place 
 #start with the opening menu - that you have seen before 
@@ -27,25 +28,27 @@ def The_App_I_Think_Maybe():
 
         if (menu == '1'):
             food_menu()
+            break
 
         if menu == '2':
             backend()
+            break
 
         else:
             print("PICK 0 or 1, it's not hard dumbass!")
 
-#Food options - seen before 
+#Food options - 
 
 def food_menu():
 
     while(True):
         choice =  (input("""
 
-(0) Imma head out ',
-(1) See the menu!!!!',
-(2) I'm a princess make something special?",
-(3) Close, but you want to mix it up a litte?',
-(4) Get rid of that',
+(0) Imma head out,
+(1) See the menu!!!!,
+(2) I'm a princess make something special?,
+(3) Close, but you want to mix it up a litte?,
+(4) Get rid of that,
 
 Hurry up and pick something would you?
             
@@ -56,47 +59,21 @@ Hurry up and pick something would you?
             break
 
         elif (choice == '2'):
-            custom = input("""
-Alright princess, What special dish can your slave make for you?""")
-            describe = input (
-"""
-Any particular type your highness?""")
-            food_list.append(custom)
-            custom_1 = (f"{custom}: {describe}")
-            food_order[(f'({5})')] = custom_1 
+            add_an_item_to_csv()
             add_order_george()
             break
             
                 
         elif (choice == '3'):
             show_food_options()
-            print(("""Alright Boss, what do you want to change?
-            """))
-            update_item= input ()
-            item_change = input('Just remeber your own ideas cost more, but what is it?')
-            item_description = input('In more detail please?!?!')
-            item_1 = (f"{item_change}: {item_description}")
-            food_order[update_item] = item_1
-            show_food_options()
+            update_csv()
             add_order_george()
             break
             
 
         elif (choice == '4'):
-            show_food_option_nums()
-            print("""
-Alright miserable, what do you want to delete?""")
-            delete_item= int(input())
-            if delete_item == 1:
-                print("Great choice, I hated that option anyway!")
-                del food_list[delete_item]
-                show_food_option_nums()
-            else:
-                print("""
-ARE YOU HAPPY NOW GRUMPY?!
-""")
-                del food_list[delete_item]
-                show_food_option_nums()
+            show_food_options()
+            delete_csv()
             break
         
         else:
