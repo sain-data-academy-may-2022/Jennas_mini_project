@@ -1,17 +1,17 @@
 import json
+from csv_fun import create_a_csv
 
 with open('Orders.json', "r") as file:
     orders1 = json.load(file)
 
-if type(orders1) is dict:
-    orders1 = [orders1]
-
 def show_order_list():
-      print("Order List:")
-      with open ('Orders.json', 'w') as file:
-          json.dump(orders1, file, indent=4) 
-      for index,order in enumerate(orders1):
-          print(index,order) 
+    print("Order List:")
+    with open ('Orders.json', 'w') as file:
+        json.dump(orders1, file, indent=4) 
+    for index,order in enumerate(orders1):
+        print(index,order)
+    
+
 
 def order_system_fun():
     while(True):
@@ -26,7 +26,7 @@ def order_system_fun():
 
         if (orders_options == '0'): 
             print ("""
-            Laters""")
+            Laters""") 
             break
 
     #show current orders 
@@ -73,3 +73,6 @@ def order_system_fun():
 
         else:
             print("You obviously don't want to change it do you!")
+
+
+    

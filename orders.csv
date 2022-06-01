@@ -1,0 +1,8 @@
+customer_name,customer_address,customer_phone,status,food,courier
+Tom,Thorpe,123,Delivered,Chocolate McChocolate Cake,Uber-Starve
+Ash Bash ,Middlepath,4595,Delivered,Chocolate McChocolate Cake,Uber-Starve  
+Sarah,Goldsworth Park ,898,Delivered,Vegan Pizza,JS Drop-Drop
+Bob,Bobtown,808,Delivered,Chocolate McChocolate Cake,Just-Late
+George ,London,787,Delivered,Vegan Pizza,Just-Late
+Tom ,Thorpe,123,PREPARING,"{'ID': '0', 'Name': 'Chocolate McChocolate Cake: ', 'Description': 'Cake that is chocolate, what more do you need to know', 'Price': '£20'}","{'Name': 'Gruel-Hub', 'Phone': '789'}"
+I hate csv,csv is shit land,123,Delivered,"{'ID': '0', 'Name': 'Chocolate McChocolate Cake: ', 'Description': 'Cake that is chocolate, what more do you need to know', 'Price': '£20'}","{'Name': 'Gruel-Hub', 'Phone': '789'}"
