@@ -1,43 +1,36 @@
 import csv
-from traceback import print_tb
 from courier_system import Courier_list
 from orders import orders1, show_order_list
 import random
+import csv
+from colorama import Fore, Style
 from Colour import Colour_red
+from courier_system import Courier_list
+from orders import show_order_list, orders1
+from food_csv import open_a_csv
 
 
-with open("food.csv", "r") as f:
-        csv_reader = csv.DictReader(f)
-        food_list = list(csv_reader)
+with open ('food.csv', 'r') as file:
+    read = csv.DictReader(file)
+    food_list = list(read)
 
-
-id = [ sub['ID'] for sub in food_list ]
-name = [ sub['Name'] for sub in food_list ]
-description = [sub['Description'] for sub in food_list ]
-price = [sub['Price'] for sub in food_list ]
-
+Index = [sub['Index'] for sub in food_list]
+Food_Name = [sub['Food Name'] for sub in food_list]
+Description = [sub['Description'] for sub in food_list]
+Price = [sub['Price'] for sub in food_list]
 
 
 def show_food_options():
-    with open("food.csv", "r") as f:
-        csv_reader = csv.DictReader(f)
-        food_list = list(csv_reader)
-    id = [ sub['ID'] for sub in food_list ]
-    name = [ sub['Name'] for sub in food_list ]
-    description = [sub['Description'] for sub in food_list ]
-    price = [sub['Price'] for sub in food_list ]
-    for i,n,d,p in zip(id, name, description, price):
-        print(i, n, d, p)
-    
+    open_a_csv()
+       
 
 def add_order_george():
-    show_food_options()
     my_order = int(input("""
-    I wanna a order a?"""))
+I wanna a order a?"""))
     print(f"""
-        FINALLY, you've chosen a {name[my_order]},we now need some details from you?
-        
-        """)
+FINALLY, you've chosen a {Food_Name[my_order]}, we now need some details from you? 
+
+    """)
     order_name = input("what's your name mate?")
     order_address = input("where do you live then?")
     order_number = input("Digits?")
@@ -50,8 +43,6 @@ def add_order_george():
     orders_george["courier"] = random.choice(Courier_list) #RANDOM CHOICE OF COURIER
     orders1.append(orders_george)
     show_order_list()
-    
-    
     Colour_red("""
 
     Okay you can start staring out of your window for the driver, if you need to change anything it will cost you.""")

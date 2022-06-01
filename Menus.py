@@ -3,10 +3,8 @@ from orders import order_system_fun
 from courier_system import Courier_list_fun
 from logins import logins_list_fun
 from Colour import Colour_red
-from Food import add_order_george, food_list, show_food_options, id
-import csv
-from foodcsv_func import add_item, show_csv, update_item , delete_item
-
+from Food import add_order_george, food_list, show_food_options
+from food_csv import add_an_item_to_csv, update_csv, delete_csv
        
 #all menus in the same place 
 #start with the opening menu - that you have seen before 
@@ -37,18 +35,18 @@ def The_App_I_Think_Maybe():
             break
 
 
-#Food options - seen before 
+#Food options - 
 
 def food_menu():
 
     while(True):
         choice =  (input("""
 
-(0) Imma head out ',
-(1) See the menu!!!!',
-(2) I'm a princess make something special?",
-(3) Close, but you want to mix it up a litte?',
-(4) Get rid of that',
+(0) Imma head out,
+(1) See the menu!!!!,
+(2) I'm a princess make something special?,
+(3) Close, but you want to mix it up a litte?,
+(4) Get rid of that,
 
 Hurry up and pick something would you?
             
@@ -59,21 +57,21 @@ Hurry up and pick something would you?
             break
 
         elif (choice == '2'):
-            add_item()
+            add_an_item_to_csv()
             add_order_george()
            
             
                 
         elif (choice == '3'):
             show_food_options()
-            update_item()
+            update_csv()
             add_order_george()
             break
             
 
         elif (choice == '4'):
             show_food_options()
-            delete_item()
+            delete_csv()
             break
         
         else:
