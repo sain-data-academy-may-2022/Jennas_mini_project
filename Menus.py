@@ -4,7 +4,7 @@ from courier_system import Courier_list_fun
 from logins import logins_list_fun
 from Colour import Colour_red
 from Food import add_order_george, food_list, show_food_options
-from food_csv import add_an_item_to_csv, update_csv, delete_csv
+from food_csv import add_an_item_to_csv, update_csv, delete_csv, open_a_csv
        
 #all menus in the same place 
 #start with the opening menu - that you have seen before 
@@ -53,6 +53,7 @@ Hurry up and pick something would you?
             """)) 
 
         if (choice == '1'):
+            open_a_csv()
             add_order_george()
             break
 
