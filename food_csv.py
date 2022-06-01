@@ -1,11 +1,14 @@
 import csv
-from turtle import title
-from unicodedata import name
 from Food_dict import food_order
+
 with open ('food.csv', 'r') as file:
         read = csv.DictReader(file)
         food_list = list(read)
 
+        Index = [sub['Index'] for sub in food_list]
+        Food_Name = [sub['Food Name'] for sub in food_list]
+        Description = [sub['Description'] for sub in food_list]
+        Price = [sub['Price'] for sub in food_list]
 
 def write_a_csv():
     titles = ['Index', 'Food Name', 'Description', 'Price']
@@ -38,6 +41,7 @@ Alright princess, What special dish can your slave make for you?""")
 Any particular type your highness?""")
     new_index = int(Index[-1]) +1
     add_food_name = [int (new_index), custom, describe, '£1000']
+    Food_Name.append(custom)
     with open ('food.csv', 'a', newline= '') as additem:
         new_line = csv.writer(additem)
         new_line.writerow(add_food_name)

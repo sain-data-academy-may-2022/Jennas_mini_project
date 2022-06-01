@@ -21,7 +21,6 @@ def show_food_options():
     open_a_csv()
        
 
-#Ask george on Food name
 def add_order_george():
     my_order = int(input("""
 I wanna a order a?"""))
