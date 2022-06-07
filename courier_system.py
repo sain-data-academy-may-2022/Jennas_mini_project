@@ -1,5 +1,5 @@
 import csv
-from courier_csv import open_a_csv, add_an_item_to_csv, update_csv, delete_csv
+from courier_csv import open_a_courier_csv, add_an_item_to_csv, update_csv, delete_csv, print_csv
 
 with open ('courier.csv', 'r') as file:
         read = csv.DictReader(file)
@@ -28,7 +28,7 @@ Couriers Menu
             
         #shows courier list   
         if (courier_options == '1'):
-            open_a_csv()
+            print_csv()
             Courier_list_fun()
             break
             

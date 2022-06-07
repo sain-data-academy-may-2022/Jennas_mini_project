@@ -5,7 +5,7 @@ import csv
 from colorama import Fore, Style
 from Colour import Colour_red
 from orders import show_order_list, orders1
-from food_csv import open_a_csv
+from food_csv import open_a_food_csv, print_csv
 from courier_csv import courier_list
 
 
@@ -20,15 +20,14 @@ Price = [sub['Price'] for sub in food_list]
 
 
 def show_food_options():
-    open_a_csv()
+    open_a_food_csv()
+    print_csv()
        
 
 def add_order_george():
-    with open ('food.csv', 'r') as file:
-        read = csv.DictReader(file)
-        food_list = list(read)
+    food_list = open_a_food_csv()
 #individual list for each heading to alow access for programme 
-        Food_Name = [sub['Food Name'] for sub in food_list]
+    Food_Name = [sub['Food Name'] for sub in food_list]
     my_order = int(input("""
 I wanna a order a?"""))
     print(f"""

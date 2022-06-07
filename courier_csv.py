@@ -17,19 +17,21 @@ def write_a_csv():
         write.writeheader() 
         write.writerows(courier_list)
 
-def open_a_csv():
+def open_a_courier_csv():
     with open ('courier.csv', 'r') as file:
         read = csv.DictReader(file)
         courier_list = list(read)
+    return courier_list
 
-        Name_list = [sub['Name'] for sub in courier_list]
-        Phone_list = [sub['Phone'] for sub in courier_list]
-        for n, p, in enumerate(zip(Name_list, Phone_list)):
-            print(n, p)
+def print_csv():
+    courier_list = open_a_courier_csv()
+    Name_list = [sub['Name'] for sub in courier_list]
+    Phone_list = [sub['Phone'] for sub in courier_list]
+    for n, p, in enumerate(zip(Name_list, Phone_list)):
+        print(n, p)
 
 def add_an_item_to_csv():
-
-    open_a_csv() 
+    
     custom = input("""
 What's the name? They best not be some idiot on a bike!""")
     custom_number = input("""
@@ -40,8 +42,7 @@ And their number?""")
     with open ('courier.csv', 'a', newline= '') as additem:
         new_line = csv.writer(additem)
         new_line.writerow(add_courier_name)
-    open_a_csv()
-    
+    print_csv()
 
 def update_csv(): 
     with open ('courier.csv', 'r') as file:
@@ -63,7 +64,7 @@ Alright Boss, which idiot do you want to change?
         write = csv.DictWriter(file, fieldnames= titles) 
         write.writeheader() 
         write.writerows(courier_list)
-    open_a_csv()
+    print_csv()
 
 
 
@@ -85,7 +86,7 @@ Alright Boss, which idiot do you want to delete?
         write = csv.DictWriter(file, fieldnames= titles) 
         write.writeheader() 
         write.writerows(courier_list)
-    open_a_csv()
+    print_csv()
 
 
 
