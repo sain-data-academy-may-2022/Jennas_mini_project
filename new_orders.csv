@@ -1,0 +1,4 @@
+order_id,customer_name,customer_address,customer_phone,status,food,courier
+0,Jenna,Thorpe,123,PREPARING,"{'Index': '0', 'Food Name': 'Chocolate McChocolate Cake', 'Description': 'Cake that is chocolate, what more do you need to know', 'Price': '£20'}","{'Name': 'Deliver-Rude', 'Phone': '123'}"
+1,Tom,Surrey,0121,Preparing,"{'Index': '2', 'Food Name': 'Hot Chocolate', 'Description': 'With Coconut milk to bring that warm chocolately cozyness', 'Price': '£10'}","{'Name': 'JS Drop Drop', 'Phone': '101'}"
+2,Tom Cruise,Top Gun Academy,7003,Take-Off,"{'product_id': '4', 'Food Name': 'Vegan Pepperoni Pizza ', 'Description': ""With lots of meat and chesee from animals, just what you Vegan's want right?"", 'Price': '£23'}","{'Name': 'Gruel-Hub', 'Phone': '789'}"

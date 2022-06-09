@@ -1,12 +1,12 @@
 # Specify our container base image
-FROM python: 2.7.18
+FROM python:3.10
 
 # Select a directory within our container
 WORKDIR /usr/app
 
 # Copy everything from our project root into our WORK DIRECTORY directory
-COPY app/ .
-
+COPY . .
+ 
 # Install dependencies
 RUN pip install -r requirements.txt
 
@@ -14,4 +14,4 @@ RUN pip install -r requirements.txt
 EXPOSE 80
 
 # Execute this command on start
-ENTRYPOINT ["python", "mini_project.py"]
+ENTRYPOINT ["python", "new_app.py"]

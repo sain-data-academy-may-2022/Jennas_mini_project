@@ -1,7 +1,0 @@
-customer_name,customer_address,customer_phone,status,food,courier
-Tom,Thorpe,123,PREPARING,"{'Index': '0', 'Food Name': 'Chocolate McChocolate Cake', 'Description': 'Cake that is chocolate, what more do you need to know', 'Price': '£20'}","{'Name': 'Deliver-Rude', 'Phone': '123'}"
-Tom,Thorpe,123,PREPARING,"{'Index': '0', 'Food Name': 'Chocolate McChocolate Cake', 'Description': 'Cake that is chocolate, what more do you need to know', 'Price': '£20'}","{'Name': 'Gruel-Hub', 'Phone': '789'}"
-Jenna,Thorpe,123,DELIVERED,"{'Index': '5', 'Food Name': 'Pie', 'Description': 'Steak', 'Price': '£1000'}","{'Name': 'JS Drop Drop', 'Phone': '101'}"
-Tom,Thorpe,01231,PREPARING,"{'Index': '0', 'Food Name': 'Chocolate McChocolate Cake', 'Description': 'Cake that is chocolate, what more do you need to know', 'Price': '£20'}","{'Name': 'JS Drop Drop', 'Phone': '101'}"
-Queen,Windsor,111,DELIVERED,"{'Index': '2', 'Food Name': 'Hot Chocolate', 'Description': 'With Coconut milk to bring that warm chocolately cozyness', 'Price': '£10'}","{'Name': 'Gruel-Hub', 'Phone': '789'}"
-Jenna,Thorpe,123,PREPARING,"{'Index': '0', 'Food Name': 'Chocolate McChocolate Cake', 'Description': 'Cake that is chocolate, what more do you need to know', 'Price': '£20'}","{'Name': 'JS Drop Drop', 'Phone': '101'}"
