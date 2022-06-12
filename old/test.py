@@ -1,5 +1,5 @@
-from csv_func import open_a_csv, print_csv, save_to_csv
-from list_func import print_nice_order_list, add_to_a_list
+from old.csv_func import open_a_csv, print_csv, save_to_csv
+from old.list_func import print_nice_order_list, add_to_a_list
 
 
 
@@ -32,10 +32,10 @@ test_save_to_csv()
 
 def test_add_to_a_list():
     #ASSEMBLE    
-    my_list = ['tom', '31']
+    my_list = ['Jenna', '123']
     new_item = 'blue'
 
-    expected = ['tom', '31', 'blue']
+    expected = ['Jenna', '123', 'blue']
     # ACT
     actual = add_to_a_list(my_list, new_item)
     # ASSERT
@@ -45,10 +45,10 @@ test_add_to_a_list()
 
 # def failed_test_add_to_a_list():
 #     #ASSEMBLE    
-#     my_list = ['tom', '31', 'green']
+#     my_list = ['Jenna', '123', 'green']
 #     new_item = 'blue'
 
-#     expected = ['tom', '31', 'blue']
+#     expected = ['Jenna', '123', 'blue']
 #     # ACT
 #     actual = add_to_a_list(my_list, new_item)
 #     # ASSERT

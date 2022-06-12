@@ -1,8 +1,9 @@
-
+#Testesd in tesy.py
 def add_to_a_list (my_list : list, new_item):
     my_list.append(new_item)
     return my_list
 
+#Testesd in tesy.py
 def print_nice_order_list(order_list):
     order_id = [sub['order_id']for sub in order_list]
     name = [sub['customer_name'] for sub in order_list]

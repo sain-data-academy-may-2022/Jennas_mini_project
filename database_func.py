@@ -1,7 +1,9 @@
 import pymysql
 import os
 from dotenv import load_dotenv
-from csv_func import save_to_csv
+import random
+from prettytable import PrettyTable
+import menus
 
 #Access Database
 
@@ -13,189 +15,102 @@ my_database = os.environ.get("mysql_db")
 
  
 def get_connection():   
-    my_connection = pymysql.connect(
+    connection = pymysql.connect(
     host=my_host,
     user=my_user,
     password=my_password,
     database=my_database
     )
-    return my_connection
+    return connection
 
-def close_connection(connection):
+connection = get_connection()
+cursor = connection.cursor()
+
+def open_db():
+    connection = get_connection()
+    cursor = connection.cursor()
+    return cursor
+
+def close_db():
+    connection.commit()
+    cursor.close()
     connection.close()
 
-#My database functions 
+food_headers = ['product_id', 'Name', 'Description', 'Price']
+courier_headers = ['courier_id', 'Name', 'Phone']
+orders_headers = ['order_id', 'customer_name', 'customer_address', 'customer_phone', 'status', 'food', 'courier']
 
-#FOOD functions
-
-#open/print food table
-def print_food_table():
-    connection = get_connection()
-    cursor = connection.cursor()
-    cursor.execute('SELECT * from food')
+def print_db(db_name, headers):
+    cursor.execute(f'Select * FROM {db_name}')
     rows = cursor.fetchall()
+    x = PrettyTable()
+    x.field_names = headers
     for row in rows:
-        print (row[0],f'{row[1]}:', row[2], f'£{row[3]}')
-    cursor.close()
-    close_connection(connection)
+        x.add_row(row)
+    print(x)
 
-#Add food to table 
 
-def add_food():
-    new_name = input("Alright princess, What special dish can your slave make for you?")
-    new_description = input("Any particular type your highness?")
-    add_food_name = [new_name, new_description, 1000]
-    connection = get_connection()
-    cursor = connection.cursor()
-    sql = "INSERT INTO food (Food_Name, Description, Price) VALUES (%s, %s, %s)" 
-    val = (add_food_name)
-    cursor.execute(sql, val)
-    connection.commit()
-    cursor.close()
-    close_connection(connection)
-    print_food_table()
 
-#Update an item in food table
+#Food_inputs 
 
-def update_food_table():
-    connection = get_connection()
-    cursor = connection.cursor()
-    print_food_table()
-    select_product_id = input("what do you want to update?")
+
+
+def add_to_db (db_name ,db_headings, values):
     cursor.execute(f"""
-    SELECT *
+    INSERT INTO {db_name} ({db_headings})
 
-    FROM food
-
-    WHERE product_id = {select_product_id}""")
-    what_update = input("What bit do you want to update Food_Name or Description?")
-    update_to = input("to?")
-    cursor.execute(f""" 
-    UPDATE food
-
-    SET
-    {what_update} = '{update_to}'
-
-    WHERE product_id = {select_product_id}; 
+    VALUES ({values});
 
     """)
-    connection.commit()
-    cursor.close()
-    close_connection(connection)
-    print_food_table()
-
-# DELETE ITEM FROM FOOD TABLE
-def delete_from_food_table():
-    connection = get_connection()
-    cursor = connection.cursor()
-    print_food_table()
-    delete_item = input("What do you want to delete?")
-    cursor.execute(f"""
-    DELETE FROM food
     
-    WHERE product_id = {delete_item};
-    """)
-    connection.commit()
-    cursor.close()
-    close_connection(connection)
-    print_food_table()
 
-
-
-#Courier functions
-
-
-
-
-
-def print_courier_table():
-    connection = get_connection()
-    cursor = connection.cursor()
-    cursor.execute('SELECT * from couriers')
-    rows = cursor.fetchall()
-    for row in rows:
-        print (row[0],row[1],row[2])
-    cursor.close()
-    close_connection(connection)
-
-
-def add_to_courier_table():
-    new_name = input("What's the name? They best not be some idiot on a bike!")
-    new_phone = input("And their number?")
-    add_courier_name = [new_name, new_phone]
-    connection = get_connection()
-    cursor = connection.cursor()
-    sql = "INSERT INTO couriers (Name, Phone) VALUES (%s, %s)" 
-    val = (add_courier_name)
-    cursor.execute(sql, val)
-    connection.commit()
-    cursor.close()
-    close_connection(connection)
-    print_courier_table()
-
-def update_to_courier_table():
-    connection = get_connection()
-    cursor = connection.cursor()
-    print_courier_table()
-    select_row = input("Which one do you want to update?")
+def update_table (db_name, id_name):
+    product_id= menus.get_input_int('What ID do you want to update?')
+    field = menus.get_input("What field do you want to change?")
+    to = menus.get_input("to?")
     cursor.execute(f"""
-    SELECT *
+    UPDATE {db_name}
 
-    FROM couriers
+    SET {field} ='{to}'
 
-    WHERE courier_id = {select_row}""")
-    what_update = input("What bit do you want to update Name or Phone?")
-    update_to = input("to?")
-    cursor.execute(f""" 
-    UPDATE couriers
-
-    SET
-    {what_update} = '{update_to}'
-
-    WHERE courier_id = {select_row}; 
+    WHERE {id_name} = {product_id} ;
 
     """)
-    connection.commit()
-    cursor.close()
-    
-    close_connection(connection)
-    print_courier_table()
 
-def delete_from_courier_table():
-    connection = get_connection()
-    cursor = connection.cursor()
-    print_courier_table()
-    delete_item = input("What do you want to delete?")
+def delete_from_db(db_name, id_name):
+    delete_item = menus.get_input_int("what id?")
     cursor.execute(f"""
-    DELETE FROM couriers
+        DELETE FROM {db_name}
+
+        WHERE {id_name} = '{delete_item}';
+
+        """)
     
-    WHERE courier_id = {delete_item};
-    """)
-    connection.commit()
-    cursor.close()
-    close_connection(connection)
-    print_courier_table()
 
 
-
-
-
-def create_a_list():
-    connection = get_connection()
-    cursor = connection.cursor()
-    cursor.execute('SELECT * from food')
+def create_a_list_of_names_from_table(field_name,list_name):
+    cursor.execute(f'SELECT {field_name} from {list_name};')
     rows = cursor.fetchall()
     my_list = rows
     return my_list
 
+courier_list =create_a_list_of_names_from_table('Name','couriers')
 
+def add_to_order_db():
+    select_food_choice = menus.get_input_int("What product_id do you want?")
+    add_c_name = menus.get_input('Whats your name?')
+    add_c_address = menus.get_input('Whats your address?')
+    add_c_phone = menus.get_input_int('Whats your number?')
+    cursor.execute(f"""
+    SELECT Name
 
+    FROM food
 
-
-
-
-
-
-
-
-
+    WHERE product_id = {select_food_choice};""")
+    food_choice = cursor.fetchall()
+    add_courier = random.choice(courier_list)
+    new_order = [add_c_name, add_c_address, add_c_phone, 'Preparing', food_choice, add_courier]
+    sql = "INSERT INTO orders (customer_name, customer_address, customer_phone, status,food,courier) VALUES (%s, %s, %s, %s, %s, %s);" 
+    val = (new_order)
+    cursor.execute(sql, val)
+    
