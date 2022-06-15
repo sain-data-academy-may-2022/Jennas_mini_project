@@ -94,7 +94,7 @@ def create_a_list_of_names_from_table(field_name,list_name):
     my_list = rows
     return my_list
 
-courier_list =create_a_list_of_names_from_table('Name','couriers')
+# courier_list =create_a_list_of_names_from_table('Name','couriers')
 
 def add_to_order_db():
     select_food_choice = menus.get_input_int("What product_id do you want?")
