@@ -3,7 +3,7 @@ import os
 from dotenv import load_dotenv
 import random
 from prettytable import PrettyTable
-import menus
+import functions
 
 #Access Database
 
@@ -55,7 +55,7 @@ def print_db(db_name, headers):
 
 
 
-def add_to_db (db_name ,db_headings, values):
+def add_to_db (db_name, db_headings, values):
     cursor.execute(f"""
     INSERT INTO {db_name} ({db_headings})
 
@@ -65,9 +65,9 @@ def add_to_db (db_name ,db_headings, values):
     
 
 def update_table (db_name, id_name):
-    product_id= menus.get_input_int('What ID do you want to update?')
-    field = menus.get_input("What field do you want to change?")
-    to = menus.get_input("to?")
+    product_id= functions.get_input_int('What ID do you want to update?')
+    field = functions.get_input("What field do you want to change?")
+    to = functions.get_input("to?")
     cursor.execute(f"""
     UPDATE {db_name}
 
@@ -78,7 +78,7 @@ def update_table (db_name, id_name):
     """)
 
 def delete_from_db(db_name, id_name):
-    delete_item = menus.get_input_int("what id?")
+    delete_item = functions.get_input_int("what id?")
     cursor.execute(f"""
         DELETE FROM {db_name}
 
@@ -97,10 +97,10 @@ def create_a_list_of_names_from_table(field_name,list_name):
 courier_list =create_a_list_of_names_from_table('Name','couriers')
 
 def add_to_order_db():
-    select_food_choice = menus.get_input_int("What product_id do you want?")
-    add_c_name = menus.get_input('Whats your name?')
-    add_c_address = menus.get_input('Whats your address?')
-    add_c_phone = menus.get_input_int('Whats your number?')
+    select_food_choice = functions.get_input_int("What product_id do you want?")
+    add_c_name = functions.get_input('Whats your name?')
+    add_c_address = functions.get_input('Whats your address?')
+    add_c_phone = functions.get_input_int('Whats your number?')
     cursor.execute(f"""
     SELECT Name
 

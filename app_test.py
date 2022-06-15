@@ -1,6 +1,6 @@
 import unittest
 import loops
-import menus 
+import functions 
 from unittest.mock import Mock, patch
 
 mock = Mock()
@@ -45,7 +45,7 @@ test_loop_3()
 def test_Colour_red():
     text = 'Hello'
     expected = 'Hello'
-    actual = menus.Colour_red(text)
+    actual = functions.Colour_red(text)
     assert actual == expected
 
 test_Colour_red()
@@ -55,7 +55,7 @@ test_Colour_red()
 def test_print_menu(mock_print):
     text = 'Hello'
     expected = 'Hello'
-    menus.print_menu(text)
+    functions.print_menu(text)
     mock_print.assert_called_with(expected)
 
 test_print_menu()
@@ -68,7 +68,7 @@ def test_get_input(mock_input):
 
     expected = 'Tom'
 
-    actual = menus.get_input('text')
+    actual = functions.get_input('text')
 
     assert actual ==expected
 
@@ -82,7 +82,7 @@ def test_get_input_int(mock_input):
 
     expected = 1
 
-    actual = menus.get_input_int('text')
+    actual = functions.get_input_int('text')
 
     assert actual ==expected
 
