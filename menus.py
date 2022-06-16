@@ -26,7 +26,7 @@ Food Menu
         (3) Close, but you want to mix it up a litte?
         (4) Get rid of that!""")
 
-couries_menu = ("""
+couriers_menu = ("""
 Couriers Menu  
         (0) Exit
         (1) Show current couriers names
@@ -37,7 +37,18 @@ Couriers Menu
 orders_menu = ("""
 Orders Menu  
         (0) Exit
-        (1) Show current orders? 
+        (1) Show current orders?
         (2) Add an order?
         (3) Update a order details? 
-        (4) Delete an order?""")
+        (4) Search by status or courier?
+        (5) Stock Check
+        (6) Delete an order?""")
+
+customer_menu = ("""
+Couriers Menu  
+        (0) Exit
+        (1) Show current customers 
+        (2) Add customers
+        (3) Update a customers details. 
+        (4) Delete a customer.""")
+
