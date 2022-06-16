@@ -4,6 +4,7 @@ import loops
 
 
 while(True):
+    database_func.open_db()
     menus.Colour_red(""" 
                           £££ ---- Costa'lot ---- £££
                                 
@@ -21,13 +22,17 @@ while(True):
         database_func.close_db()
         break
 
-    
+#First Loop   
     menu_1 = True
     while (menu_1):
         if menu == 1:
             database_func.open_db()
             menus.print_menu(menus.food_menu)
-            food_options = menus.get_input_int("Hurry up and pick something would you?")
+            food_options = menus.get_input_int("""
+
+Hurry up and pick something would you?
+
+""")
             menu_1 = loops.food_loop(food_options)
 
         else:
@@ -39,7 +44,10 @@ while(True):
         if menu == 2:
             database_func.open_db()
             menus.print_menu(menus.orders_menu)
-            order_options = menus.get_input_int("You best be adding an order, we need that money!?")
+            order_options = menus.get_input_int("""
+
+You best be adding an order, we need that money!?
+""")
             menu_2 = loops.orders_loop(order_options)
         
         else:
@@ -51,7 +59,11 @@ while(True):
         if menu == 3:
             database_func.open_db()
             menus.print_menu(menus.couriers_menu)
-            courier_options = menus.get_input_int("What do you want to do with these idiots?")
+            courier_options = menus.get_input_int("""
+            
+
+What do you want to do with these idiots?
+""")
             menu_3 = loops.courier_loop(courier_options)
         
         else:
@@ -62,7 +74,9 @@ while(True):
         if menu == 4:
             database_func.open_db()
             menus.print_menu(menus.customer_menu)
-            customer_options = menus.get_input_int("If you're deleting a customer, you're fired!")
+            customer_options = menus.get_input_int("""
+If you're deleting any money, I mean a customer, you're fired!
+""")
             menu_4 = loops.customers_loop(customer_options)
         
         else:

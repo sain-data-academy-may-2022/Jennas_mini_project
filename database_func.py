@@ -26,6 +26,8 @@ def get_connection():
 connection = get_connection()
 cursor = connection.cursor()
 
+#open/close functions for db
+
 def open_db():
     connection = get_connection()
     cursor = connection.cursor()
@@ -36,10 +38,11 @@ def close_db():
     cursor.close()
     connection.close()
 
-food_headers = ['product_id', 'food_name', 'description', 'food_price', 'quantity']
+food_headers = ['product_id', 'food_name', 'description', 'food_price']
 courier_headers = ['courier_id', 'courier_name', 'courier_phone']
 orders_headers = ['order_id', 'customer_name', 'customer_address', 'customer_phone', 'status', 'food', 'courier']
 
+# print everything in the database
 def print_db(db_name, headers):
     connection = get_connection()
     cursor = connection.cursor()
@@ -51,7 +54,7 @@ def print_db(db_name, headers):
         x.add_row(row)
     print(x)
 
-
+# print specific keys the database
 def print_specific_db(db_name, keys, headers):
     connection = get_connection()
     cursor = connection.cursor()
@@ -64,28 +67,23 @@ def print_specific_db(db_name, keys, headers):
     print(x)
 
 
-#Food_inputs 
 
-
+#basic funcs add/update/delete db - work for all but orders
 
 def add_to_db (db_name ,db_headings, values):
-    try:
-        cursor.execute(f"""
-        INSERT INTO {db_name} ({db_headings})
+    cursor.execute(f"""
+    INSERT INTO {db_name} ({db_headings})
 
-        VALUES ({values});
+    VALUES ({values});
 
-        """)
-        connection.commit()
-    except: 
-        print("Sorry that didnt work")
-        
-    
+    """)
+    connection.commit()
+ 
 
 def update_table (db_name, id_name):
     connection = get_connection()
     cursor = connection.cursor()
-    product_id= menus.get_input_int('What ID do you want to update?')
+    id= menus.get_input_int('What ID do you want to update?')
     field = menus.get_input("What field do you want to change?")
     to = menus.get_input("to?")
     cursor.execute(f"""
@@ -93,7 +91,7 @@ def update_table (db_name, id_name):
 
     SET {field} ='{to}'
 
-    WHERE {id_name} = {product_id} ;
+    WHERE {id_name} = {id} ;
 
     """)
     connection.commit()
@@ -149,11 +147,12 @@ def delete_from_customers():
 
 
 
-    
-def search_by_key(header_choice : str, key_choice, database_name, headers):
+#search by delivery status or courier     
+def search_by_key(value_question: str, key_choice, database_name, headers):
     connection = get_connection()
     cursor = connection.cursor()
-    status = input(header_choice)
+ # Delivered or Prearing/ What courier ?  
+    status = input(value_question) 
     cursor.execute(f"SELECT order_id, {key_choice} FROM {database_name} WHERE {key_choice} = '{status}';")
     status_list = cursor.fetchall()
     x = PrettyTable()
@@ -163,4 +162,9 @@ def search_by_key(header_choice : str, key_choice, database_name, headers):
     print(x)
 
 
-
+def select_last_id_for_input(id_name, db_name):
+    cursor.execute(f"SELECT {id_name} FROM {db_name} WHERE {id_name}=(SELECT max({id_name}) FROM {db_name});")
+    customer_id = cursor.fetchone()
+    return customer_id
+    
+   
