@@ -14,4 +14,4 @@ Know something about coding I guess. Then just run it in python and follow the i
 
 The apps USP of poor service was designed specifically to set user expectations and ensure they are not let down when my amateur coding inevitably brakes. Also, allowed me to embrace poor customer service despite it being a core "principle" of my working career for the last 14 years!
 
-Git Kata
+Git Kata Thursday 
