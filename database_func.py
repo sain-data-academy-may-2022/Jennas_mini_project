@@ -36,7 +36,7 @@ def close_db():
     cursor.close()
     connection.close()
 
-food_headers = ['product_id', 'Name', 'Description', 'Price']
+food_headers = ['product_id', 'food_name', 'description', 'food_price', 'quantity']
 courier_headers = ['courier_id', 'Name', 'Phone']
 orders_headers = ['order_id', 'customer_name', 'customer_address', 'customer_phone', 'status', 'food', 'courier']
 
@@ -56,12 +56,15 @@ def print_db(db_name, headers):
 
 
 def add_to_db (db_name ,db_headings, values):
-    cursor.execute(f"""
-    INSERT INTO {db_name} ({db_headings})
+    try:
+        cursor.execute(f"""
+        INSERT INTO {db_name} ({db_headings})
 
-    VALUES ({values});
+        VALUES ({values});
 
-    """)
+        """)
+    except: 
+        print("Sorry that didnt work")
     
 
 def update_table (db_name, id_name):

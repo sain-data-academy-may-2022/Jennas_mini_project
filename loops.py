@@ -1,7 +1,7 @@
 import menus
 import database_func
 from database_func import print_db
-food_headers = ['product_id', 'Name', 'Description', 'Price']
+food_headers = ['product_id', 'food_name', 'description', 'food_price', 'quantity']
 courier_headers = ['courier_id', 'Name', 'Phone']
 orders_headers = ['order_id', 'customer_name', 'customer_address', 'customer_phone', 'status', 'food', 'courier']
 
@@ -17,7 +17,7 @@ def food_loop(food_options):
     elif food_options == 2:
         food_name = menus.get_input('What is it called?')
         food_description = menus.get_input('Describe it?')
-        database_func.add_to_db ('food' ,"Name , Description, Price", f"'{food_name}', '{food_description}', '1000' ")
+        database_func.add_to_db ('food' ,"food_name , description, food_price, quantity", f"'{food_name}', '{food_description}', 1000.00, 100 ")
         database_func.print_db('food', food_headers )
         
 
@@ -46,7 +46,7 @@ def courier_loop (courier_options):
     elif courier_options == 2:
         courier_name = menus.get_input('What are they called?')
         courier_phone = menus.get_input_int('Their Number?')
-        database_func.add_to_db ('couriers' ,"Name , Phone", f"'{courier_name}', '{courier_phone}' ")
+        database_func.add_to_db ('couriers' ,"courier_name , courier_phone", f"'{courier_name}', '{courier_phone}' ")
         database_func.print_db('couriers', courier_headers )
         
 
