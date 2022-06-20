@@ -1,5 +1,6 @@
 from colorama import Fore, Back, Style
 
+
 def Colour_red (text): 
     print(Fore.RED + text)
     print(Style.RESET_ALL)
@@ -45,7 +46,7 @@ Orders Menu
         (6) Delete an order?""")
 
 customer_menu = ("""
-Couriers Menu  
+Customer Menu  
         (0) Exit
         (1) Show current customers 
         (2) Add customers

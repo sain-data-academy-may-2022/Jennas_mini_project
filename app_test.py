@@ -64,9 +64,9 @@ test_print_menu()
 @patch('builtins.input')
 def test_get_input(mock_input):
     #assemble
-    mock_input.return_value = 'Tom'
+    mock_input.return_value = 'Costalot'
 
-    expected = 'Tom'
+    expected = 'Costalot'
 
     actual = menus.get_input('text')
 

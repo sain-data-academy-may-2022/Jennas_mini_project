@@ -1,6 +1,10 @@
-# Jennas_mini_project
+# Jennas_mini_project ^_^ 
 
-## Costa'lot!!!
+## Spec
+
+Your Client has launched a pop-up cafe in a busy business district offering delivered home-made lunches and refreshements to the surrounding offices. As such, they require a software app which helps them to log and track orders. 
+
+##                                                   --- £££ Costa'lot!!! £££ --- 
 
 ## App Manifesto
 
@@ -8,7 +12,7 @@ To build an app that will charge customer's an extortionate amount of money for 
 
 ## Running
 
-Know something about coding I guess. Then just run it in python and follow the instructions. Thats all I do, apart from the knowing about coding bit, Connor does that.
+Know something about coding I guess. Just run it in python, follow the instructions and some stuff happens in something called SQL with a databse thingy. Thats all I do, apart from the knowing about coding bit, I just steal that!
 
 ## USP
 

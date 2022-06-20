@@ -1,6 +1,7 @@
 import database_func
 import menus
 import loops
+import inputs
 
 
 while(True):
@@ -16,19 +17,21 @@ while(True):
 (4) Customers Menu
 
                              --------------------""")
-    menu = int(input())
+    
+    menu = inputs.int_input('')
     if menu == 0:
         print("See you never!")
         database_func.close_db()
         break
 
 #First Loop   
+#Food Menu 
     menu_1 = True
     while (menu_1):
         if menu == 1:
             database_func.open_db()
             menus.print_menu(menus.food_menu)
-            food_options = menus.get_input_int("""
+            food_options = inputs.int_input("""
 
 Hurry up and pick something would you?
 
@@ -38,13 +41,13 @@ Hurry up and pick something would you?
         else:
             break
         
- 
+ #Orders Menu 
     menu_2 = True
     while (menu_2):
         if menu == 2:
             database_func.open_db()
             menus.print_menu(menus.orders_menu)
-            order_options = menus.get_input_int("""
+            order_options = inputs.int_input("""
 
 You best be adding an order, we need that money!?
 """)
@@ -53,13 +56,13 @@ You best be adding an order, we need that money!?
         else:
             break
 
-
+#Couriers Menu 
     menu_3 = True
     while (menu_3):
         if menu == 3:
             database_func.open_db()
             menus.print_menu(menus.couriers_menu)
-            courier_options = menus.get_input_int("""
+            courier_options = inputs.int_input("""
             
 
 What do you want to do with these idiots?
@@ -68,13 +71,13 @@ What do you want to do with these idiots?
         
         else:
             break
-
+#Customer Menu 
     menu_4 = True
     while (menu_4):
         if menu == 4:
             database_func.open_db()
             menus.print_menu(menus.customer_menu)
-            customer_options = menus.get_input_int("""
+            customer_options = inputs.int_input("""
 If you're deleting any money, I mean a customer, you're fired!
 """)
             menu_4 = loops.customers_loop(customer_options)
