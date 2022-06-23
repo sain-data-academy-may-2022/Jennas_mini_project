@@ -8,7 +8,7 @@ connection = database_func.get_connection()
 cursor = connection.cursor()
 
 def add_to_order():
-    customer_id=database_func.add_customer()
+    customer_id= database_func.add_customer()
    
 
 # Add to customer_orders db
@@ -96,4 +96,6 @@ Alright, thank you for your small amount of money, hope you stay hungry.
             break
         if more == "y":
             print("")
+
+
 

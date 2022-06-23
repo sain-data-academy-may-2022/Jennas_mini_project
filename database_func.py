@@ -1,5 +1,6 @@
 from operator import add
 from string import printable
+from numpy import int64
 import pymysql
 import os
 from dotenv import load_dotenv
@@ -7,6 +8,7 @@ import random
 from prettytable import PrettyTable
 import menus
 import inputs
+
 
 #Access Database
 
@@ -40,6 +42,11 @@ def close_db():
     connection.commit()
     cursor.close()
     connection.close()
+
+def execute_db(do_it):
+    cursor.execute(do_it)
+    connection.commit()
+
 
 food_headers = ['product_id', 'food_name', 'description', 'food_price']
 courier_headers = ['courier_id', 'courier_name', 'courier_phone']
@@ -152,8 +159,7 @@ def select_last_id_for_input(id_name, db_name):
     customer_id = cursor.fetchone()
     return customer_id
 
-
-    
+#adding to a database - using values %s 
 def add_to_db_val(db_name, id_name, number_s, values):
     sql = (f"INSERT INTO {db_name} ({id_name}) VALUES ({number_s})")
     val = (values)
@@ -163,24 +169,24 @@ def add_to_db_val(db_name, id_name, number_s, values):
     except pymysql.err.IntegrityError:
         print ("")
         
-
-
-
-
+#work out a price 
 def work_out_price(quantity:int, product_id: int):
     cursor.execute(f"SELECT food_price * {quantity} as TOTAL FROM food WHERE product_id= {product_id};")
     price1 = cursor.fetchall()
     return price1
 
-
-
-
+#random choice used for the couriers atm - but could be used for any database
 def random_choice_from_db(id_name, db_name):
     cursor.execute(f'SELECT {id_name} from {db_name};')
     rows = cursor.fetchall()
     list = rows
     random_id= random.choice(list)
     return random_id
+
+
+###JOINS to print mixed tables - for users 
+
+#orders 
 
 def orderdb_id_name_price_status():
     connection = get_connection()
@@ -215,33 +221,77 @@ def orderdb_name_food():
         x.add_row(row)
     print(x)
 
+def check_customerid():
+    cursor.execute("SELECT customer_address FROM customers")
+    address_list = [i[0] for i in cursor.fetchall()]
 
+    cursor.execute("SELECT customer_phone FROM customers")
+    phone_list = [i[0] for i in cursor.fetchall()]
+
+    add_c_name = menus.get_input('Whats your name?')
+    add_c_address = menus.get_input('Whats your address?')
+    add_c_phone = input("")
+    if add_c_address in address_list and add_c_phone in phone_list:
+        cursor.execute(f"SELECT customer_id FROM customers WHERE customer_address = '{add_c_address}' AND customer_phone = '{add_c_phone}'")
+        fetch= cursor.fetchall()[0]
+        customer_id =fetch[0]
+        print(f"You've ordered before! Your customer_id is {customer_id}")
+
+
+
+
+# adding customer //checking id 
 def add_customer():
-    connection = get_connection()
-    cursor = connection.cursor()
-    existing_id = inputs.int_input("Do you have a customer number?Enter it if you do, otherwise enter 0? ")
-    customer_id = existing_id
+    global customer_id
+    existing_id = inputs.int_input("""
+
+
+Do you have a customer number? 
+Enter it if you do, otherwise enter 0? 
+    
+    """)
     if existing_id >= 1:
         try:
+            
             cursor.execute(f"SELECT customer_name FROM customers WHERE customer_id={existing_id}")
             name = cursor.fetchone()
-            print(f"Welcome back, {name[0]}")
+            print(f"""
+
+Welcome back, {name[0]}
+
+""")
+            customer_id = existing_id
+            return customer_id
         except TypeError:
             print ("You aren't a customer! You can't fool us!")
             add_customer()
+
     if existing_id == 0:
         #Add to customer db
+        cursor.execute("SELECT customer_address FROM customers")
+        address_list = [i[0] for i in cursor.fetchall()]
+
+        cursor.execute("SELECT customer_phone FROM customers")
+        phone_list = [i[0] for i in cursor.fetchall()]
+
         add_c_name = menus.get_input('Whats your name?')
         add_c_address = menus.get_input('Whats your address?')
-        add_c_phone = inputs.int_input('Whats your number?')
-        add_to_db('customers', "customer_name, customer_address, customer_phone", f"'{add_c_name}', '{add_c_address}', '{add_c_phone}'")
-        #GET customer id for customer_orders db
-        cursor.execute("SELECT customer_id FROM customers WHERE customer_id=(SELECT max(customer_id) FROM customers);")
-        customer_id = cursor.fetchone()
-    
+        add_c_phone = input("And your number?")
+        if add_c_address in address_list and add_c_phone in phone_list:
+            cursor.execute(f"SELECT customer_id FROM customers WHERE customer_address = '{add_c_address}' AND customer_phone = '{add_c_phone}'")
+            fetch= cursor.fetchall()[0]
+            customer_id =fetch[0]
+            print(f"You've ordered before! Your customer_id is {customer_id}")
+            add_customer()
+        else:
+            add_to_db('customers', "customer_name, customer_address, customer_phone", f"'{add_c_name}', '{add_c_address}', '{add_c_phone}'")
+            cursor.execute("SELECT customer_id FROM customers WHERE customer_id=(SELECT max(customer_id) FROM customers);") 
+            customer_id = cursor.fetchone()
+            return customer_id
+
     return customer_id
 
-
+#'search' order status/courier
 def status_or_courier():
     search = input('Do you want to search by status or courier?')
     if search == "status":
@@ -254,3 +304,71 @@ See Delivered or Preparing?""", 'status', 'orders', ('order_id', 'status'))
     else:
         print('STATUS OR COURIER!')
         status_or_courier()
+
+    
+
+
+cursor.execute(f"""SELECT SUM(quantity) FROM food_orders
+WHERE product_id = (1);
+""")
+amount_of_cake = cursor.fetchall()
+total_cake = int(amount_of_cake[0][0])
+
+cursor.execute(f"""SELECT SUM(quantity) FROM food_orders
+WHERE product_id = (2);
+""")
+amount_of_salad = cursor.fetchall()
+total_salad = int(amount_of_salad[0][0])
+
+cursor.execute(f"""SELECT SUM(quantity) FROM food_orders
+WHERE product_id = (3);
+""")
+amount_of_hotchoc = cursor.fetchall()
+total_hotchoc = int(amount_of_hotchoc[0][0])
+
+cursor.execute(f"""SELECT SUM(quantity) FROM food_orders
+WHERE product_id = (4);
+""")
+amount_of_special = cursor.fetchall()
+total_special = int(amount_of_special[0][0])
+
+cursor.execute(f"""SELECT SUM(quantity) FROM food_orders
+WHERE product_id = (5);
+""")
+amount_of_vegan = cursor.fetchall()
+total_vegan = int(amount_of_vegan[0][0])
+
+
+cursor.execute(f"""SELECT SUM(quantity) FROM food_orders
+WHERE product_id = (8);
+""")
+amount_of_pie = cursor.fetchall()
+total_pie = int(amount_of_pie[0][0])
+
+
+# cursor.execute("SELECT product_id FROM food WHERE product_id=(SELECT max(product_id) FROM food);")
+# last_id = cursor.fetchone()
+# last_id1 = int(last_id[0])
+# # print(last_id1)
+
+# cursor.execute(f"""SELECT SUM(quantity) FROM food_orders
+# WHERE product_id = ({last_id1});
+# """)
+# amount_of_last = cursor.fetchall()
+# total_last = int(amount_of_last[0][0])
+
+
+
+total_sales = [total_cake, total_salad, total_hotchoc, total_special, total_vegan, total_pie]
+
+
+
+    
+
+
+
+
+
+
+
+

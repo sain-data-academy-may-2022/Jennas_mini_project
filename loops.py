@@ -137,7 +137,7 @@ Card better not bounce!
     elif customer_options == 2:
         add_c_name = menus.get_input('Whats your name?')
         add_c_address = menus.get_input('Whats your address?')
-        add_c_phone = inputs.int_input('Whats your number?')
+        add_c_phone = inputs.phone_input()
         database_func.add_to_db ('customers' ,"customer_name, customer_address, customer_phone", f"'{add_c_name}', '{add_c_address}', '{add_c_phone}' ")
         database_func.print_db('customers', customer_headers )
         

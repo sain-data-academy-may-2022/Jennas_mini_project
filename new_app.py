@@ -33,7 +33,7 @@ while(True):
             menus.print_menu(menus.food_menu)
             food_options = inputs.int_input("""
 
-Hurry up and pick something would you?
+Hurry up and pick something would you!
 
 """)
             menu_1 = loops.food_loop(food_options)

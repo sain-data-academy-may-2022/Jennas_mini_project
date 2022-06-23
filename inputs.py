@@ -8,6 +8,7 @@ def int_input(your_text):
     except:
         print("I need a number!")
         int_input("Try again, idiot?! ")
+    return menu
     
     return menu
 
@@ -54,19 +55,20 @@ def delete_from_table(cursor, connection, db_name, id_name):
         delete_from_table(cursor, connection, db_name, id_name)
 
  
-def how_many(out_of_stock):
-    quantity1= int(input("How many? "))
-    if quantity1 > out_of_stock:
-        print("Stop being greedy, we don't have that many")
-        how_many(out_of_stock)
-    if quantity1 < out_of_stock:
-        print("Great we have enough")
+# def how_many(out_of_stock):
+#     quantity1= int(input("How many? "))
+#     if quantity1 > out_of_stock:
+#         print("Stop being greedy, we don't have that many")
+#         how_many(out_of_stock)
+#     if quantity1 < out_of_stock:
+#         print("Great we have enough")
+#     return quantity1
 
       
 def stock_check(out_of_stock):
     while(True):
         my_order =int_input("how many would you like?")
-        if my_order < out_of_stock: 
+        if my_order <= out_of_stock: 
             print('Yup, we can do that!')
             new_stock = my_order
             return new_stock
@@ -88,5 +90,16 @@ def real_product(cursor):
             print("An actual product please!")
             
     
+
+def phone_input():
+    phNo = input("What's your digits?: ")
+    length = len(phNo)
+    if length == 11 \
+        and phNo[0:].isdigit():
+        print("Come on mate, I'm not your ex, just give me a real number!")
+    else :
+        print("Thanks, I promise I won't drunk text you")
+    
+    return phNo
 
 

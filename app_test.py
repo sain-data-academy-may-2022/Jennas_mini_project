@@ -2,6 +2,7 @@ import unittest
 import loops
 import menus 
 from unittest.mock import Mock, patch
+from inputs import int_input, stock_check
 
 mock = Mock()
 
@@ -90,10 +91,64 @@ test_get_input_int()
 
 
 
+@patch('builtins.input')
+def test_int_input_correct(mock_input):
+    #assemble
+    mock_input.return_value = 3
+
+    expected = 3
+
+    #act
+    actual = int_input("")
+
+    #assert
+
+    assert actual == expected
+
+
+test_int_input_correct()
+
+@patch('builtins.input')
+def test_int_input_incorrect(mock_input):
+    #assemble
+    mock_input.return_value = 'hello'
+    mock_input.return_value = 3
+
+    expected = 3
+
+    #act
+    actual = int_input("")
+
+    #assert
+
+    assert actual == expected
+
+
+test_int_input_incorrect()
 
 
 
+@patch('builtins.input')
+def test_stock_check(mock_input):
+    mock_input.return_value = 10
+    expected = 10
+
+    actual = stock_check(11)
+
+    assert actual == expected
 
 
+test_stock_check()
 
-     
+
+@patch('builtins.input')
+def test_stock_check_one_wrong(mock_input):
+    mock_input.return_value = 100
+    mock_input.return_value = 10
+    expected = 10
+
+    actual = stock_check(11)
+
+    assert actual == expected
+
+test_stock_check_one_wrong()
