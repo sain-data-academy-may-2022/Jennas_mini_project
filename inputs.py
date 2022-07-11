@@ -76,6 +76,7 @@ def stock_check(out_of_stock):
             print('Oi greedy, we dont have enough!')
 
 
+#Checks if product_id exists
 def real_product(cursor):
     while(True):
         product_id1 = int_input("What product id would you like to order?")
@@ -96,10 +97,13 @@ def phone_input():
     length = len(phNo)
     if length == 11 \
         and phNo[0:].isdigit():
-        print("Come on mate, I'm not your ex, just give me a real number!")
+        print("""
+
+Thanks, I promise I won't drunk text you
+        
+        """)
     else :
-        print("Thanks, I promise I won't drunk text you")
+        print("Come on mate, I'm not your ex, just give me a real number!")
+        
     
     return phNo
-
-

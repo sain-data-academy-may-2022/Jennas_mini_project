@@ -2,7 +2,8 @@ import unittest
 import loops
 import menus 
 from unittest.mock import Mock, patch
-from inputs import int_input, stock_check
+from inputs import int_input, stock_check, phone_input, real_product
+from database_func import cursor
 
 mock = Mock()
 
@@ -152,3 +153,38 @@ def test_stock_check_one_wrong(mock_input):
     assert actual == expected
 
 test_stock_check_one_wrong()
+
+
+@patch('builtins.input')
+def test_phone_input(mock_input):
+    #assemble
+    mock_input.return_value = 1213
+    mock_input.return_value = '07488311272'
+    expected = '07488311272'
+
+    #act
+    actual = phone_input()
+
+    # 
+    assert actual == expected
+
+
+test_phone_input()
+
+@patch('builtins.input')
+def test_real_product(mock_input):
+    #assemble
+    mock_input = 22
+    mock_input = 1
+    expected = 1
+
+    #act
+    actual = real_product(cursor)
+
+    #assert
+
+    assert actual == expected
+
+test_real_product()
+
+
